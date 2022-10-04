@@ -22,9 +22,11 @@ public class SneakyDroid extends Droid{
     @Override
     public void setHp(int hp) {
         Random random = new Random();
-        if (random.nextInt(100)<=15)
-            additionalDamage += hp - this.getHp();
-        else
+        if (random.nextInt(100) <= 15)
+        {
+            additionalDamage += this.getHp()-hp;
+            System.out.println(this.getClass().getSimpleName() + this.getName() + " ухилився, та посилить свою наступну атаку на " + additionalDamage);
+        } else
             super.setHp(hp);
     }
 }

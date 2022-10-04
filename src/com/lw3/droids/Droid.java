@@ -62,6 +62,10 @@ public abstract class Droid {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getHp() {
         return hp;
     }

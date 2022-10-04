@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.lw1","c":"Task","l":"doTask()"},{"p":"com.lw1","c":"Task","l":"setNewLength()"},{"p":"com.lw1","c":"Task","l":"Task()","u":"%3Cinit%3E()"}];updateSearchResults();

@@ -1,0 +1,26 @@
+{
+  "stones": [
+    {
+      "name": "atest2",
+      "pricePerCarat": 10,
+      "weight": 10.0,
+      "transparency": 0.2,
+      "type": {
+        "name": "name",
+        "value": 0
+      }
+    },
+    {
+      "name": "рол",
+      "pricePerCarat": 10,
+      "weight": 10.0,
+      "transparency": 0.0,
+      "type": {
+        "name": "name",
+        "value": 0
+      }
+    }
+  ],
+  "necklace": null,
+  "types": []
+}

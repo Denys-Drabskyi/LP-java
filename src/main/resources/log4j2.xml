@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{TRACE=blue}" disableAnsi="false"/>
+<!--            <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>-->
+        </Console>
+        <Console name="LogToConsoleConnectionsInfo" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n}{TRACE=magenta}" disableAnsi="false"/>
+            <!--            <PatternLayout pattern="[%t] %-5level %logger{36} - %msg%n"/>-->
+        </Console>
+        <File name="LogToFile" fileName="logs/app.log" append="false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="LogToFile2" fileName="logs/main.log" append="false">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+
+<!--        <appender name="mailAppender" class="org.apache.log4j.net.SMTPAppender">-->
+<!--        <param name="BufferSize" value="50" />-->
+<!--        <param name="SMTPHost" value="smtp.mail.yahoo.com" />-->
+<!--        <param name="SMTPPort" value="587" />-->
+<!--        <param name="SMTPUsername" value="myemail_id@yahoo.co.in" />-->
+<!--        <param name="SMTPPassword" value="mypassword" />-->
+<!--        <param name="From" value="fromemail_id@yahoo.co.in" />-->
+<!--        <param name="To" value="to_emailid@gmail.com" />-->
+<!--        <param name="Subject" value="Testing Log4j mail notification" />-->
+<!--        <layout class="org.apache.log4j.PatternLayout">-->
+<!--            <param name="ConversionPattern" value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" />-->
+<!--        </layout>-->
+<!--        <filter class="org.apache.log4j.varia.LevelRangeFilter">-->
+<!--            <param name="LevelMin" value="error" />-->
+<!--            <param name="LevelMax" value="fatal" />-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+    </Appenders>
+    <Loggers>
+        <Logger name="com.example.periodicals.test_Main" level="info" additivity="false">
+            <AppenderRef ref="LogToFile2"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+
+<!--        Для виводу інформації про активні підключення trace -->
+        <Logger name="com.example.periodicals.dao.ConnectionPool" level="error" additivity="false">
+            <AppenderRef ref="LogToConsoleConnectionsInfo"/>
+        </Logger>
+
+<!--        <Logger name="src.main.webapp" level="trace">-->
+<!--&lt;!&ndash;            <AppenderRef ref="LogToFile2"/>&ndash;&gt;-->
+<!--            <AppenderRef ref="LogToConsole"/>-->
+<!--        </Logger>-->
+
+        <Root level="trace">
+            <AppenderRef ref="LogToFile2"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>

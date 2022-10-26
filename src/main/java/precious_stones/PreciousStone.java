@@ -108,12 +108,7 @@ public class PreciousStone {
 
     @Override
     public String toString() {
-        return "PreciousStone{" +
-                "name='" + name + '\'' +
-                ", pricePerCarat=" + pricePerCarat +
-                ", weight=" + weight +
-                ", transparency=" + transparency +
-                ", type='" + type + '\'' +
-                '}';
+        return String.format("камінь: ім'я = %s тип = %s, ціна за карат = %d, вага = %d, прозорість =%s",
+                name, type.toString(), pricePerCarat, weight, transparency);
     }
 }

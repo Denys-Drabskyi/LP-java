@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-// TODO: 26.10.2022 кодування тексту повністю померло
 public class Program {
     private final Scanner s = new Scanner(System.in);
     private final Logger logger = LoggerFactory.getLogger(Program.class);
@@ -22,6 +21,7 @@ public class Program {
 
     private void mainMenu (){
         System.out.flush();
+        System.out.println("Для вибору команди впишіть номер пункту меню, під якии ввона знаходиться");
         int i = 0;
         while (i<1 || i >3){
             System.out.println("1 -> моє намисто\n2 -> мої камінці\n3 -> налаштування");

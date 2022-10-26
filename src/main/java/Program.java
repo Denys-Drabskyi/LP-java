@@ -1,14 +1,19 @@
 import json.JsonConverter;
 import json.JsonConverterData;
+import necklace.Necklace;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 // TODO: 26.10.2022 кодування тексту повністю померло
 public class Program {
-    private Scanner s = new Scanner(System.in);
-    private JsonConverterData jsonConverterData = JsonConverter.convertToJsonConverterData();
+    private final Scanner s = new Scanner(System.in);
+    private final Logger logger = LoggerFactory.getLogger(Program.class);
+    private final JsonConverterData jsonConverterData = JsonConverter.convertToJsonConverterData();
 
     public static void main(String[] args) {
         Program program = new Program();
@@ -16,6 +21,7 @@ public class Program {
     }
 
     private void mainMenu (){
+        System.out.flush();
         int i = 0;
         while (i<1 || i >3){
             System.out.println("1 -> моє намисто\n2 -> мої камінці\n3 -> налаштування");
@@ -26,14 +32,27 @@ public class Program {
             case 2 -> myStones();
             case 3 -> settings();
         }
-
     }
 
     private void myNecklace (){
-        System.out.println(jsonConverterData.getNecklace());
+        System.out.flush();
+        Necklace necklace = jsonConverterData.getNecklace();
+        if (necklace == null){
+            logger.info("necklace null");
+            System.out.println("У намисті немає каменів");
+
+        } else {
+            logger.info(String.format("necklace %s",necklace));
+            System.out.println(necklace);
+        }
         int i = 0;
         while (i<1 || i > 4){
-            System.out.println("1 -> редагувати\n2 -> сортувати\n3 -> видалити\n4 -> до головного меню");
+            System.out.println(
+                    """
+                            1 -> редагувати
+                            2 -> сортувати
+                            3 -> видалити
+                            4 -> назад""");
             i = s.nextInt();
         }
         switch (i){
@@ -43,19 +62,47 @@ public class Program {
             case 4 -> mainMenu();
         }
     }
+
     private void myStones (){
+        System.out.flush();
         List<PreciousStone> stones = jsonConverterData.getStones();
+        StringBuilder sb = new StringBuilder();
         int i = 0;
+        logger.info(String.format("Список каменів %s",stones.toString()));
         while (i<stones.size()){
-            System.out.printf("%d: %s, тип = %s", i, stones.get(i).getName(), stones.get(i).getType().getName());
+            sb.append(String.format("%d: назва каменю = %s, тип = %s\n",
+                    i,
+                    stones.get(i).getName(),
+                    stones.get(i).getType().getName()));
+            i++;
         }
-        
+        sb.append(String.format("%d -> Новий камінець\n", i+1));
+        sb.append(String.format("%d -> Назад", i+2));
+        int count = i;
+        i=-1;
+
+        while (i<0||i>count+2){
+            System.out.println(sb);
+            i = s.nextInt();
+        }
+
+        if (i < stones.size())
+            manageStone(stones.get(i));
+        if (i == stones.size()+1)
+            createStone();
+        else
+            mainMenu();
     }
+
+    private void createStone() {
+    }
+
+    private void manageStone(PreciousStone preciousStone) {
+    }
+
     private void settings (){
 
     }
-
-
 
     private void  editNeckless() {
 

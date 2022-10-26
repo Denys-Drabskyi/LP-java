@@ -10,18 +10,9 @@ import java.util.Scanner;
 public class PreciousStone {
     private String name;
     private int pricePerCarat;
-    private double weight;
+    private int weight;
     double transparency;
     private StoneType type;
-
-    public PreciousStone() {
-        this.name = null;
-        this.pricePerCarat = 0;
-        this.weight = 0;
-        this.transparency = -1;
-        this.type = null;
-        init();
-    }
 
     public PreciousStone(String name, int pricePerCarat, int weight, double transparency, StoneType type) {
         this.name = name;
@@ -29,30 +20,29 @@ public class PreciousStone {
         this.weight = weight;
         this.transparency = transparency;
         this.type = type;
-        init();
+        validate();
     }
 
-    private void init (){
+    private void validate(){
         Scanner s = new Scanner(System.in);
         while (this.name == null){
-            System.out.println("Введіть ім'я каменю\n");
+            System.out.println("Введіть ім'я каменю");
             this.name = s.nextLine();
         }
         while (pricePerCarat <= 0){
-            System.out.println("Введіть ціну за карат каменю\n");
+            System.out.println("Введіть ціну за карат каменю");
             this.pricePerCarat = s.nextInt();
         }
         while (weight <= 0){
-            System.out.println("Введіть вагу в каратах каменю\n");
+            System.out.println("Введіть вагу в каратах каменю");
             this.weight = s.nextInt();
         }
         while (transparency < 0 || transparency > 1){
-            System.out.println("Введіть відсоток прозорості де 10% = 0,1 каменю\n");
+            System.out.println("Введіть відсоток прозорості де 10% = 0,1 каменю");
             this.transparency = s.nextDouble();
         }
         typeValidator(s);
     }
-
 
     private void typeValidator (Scanner s){
         if (type == null) {
@@ -66,7 +56,10 @@ public class PreciousStone {
                 System.out.printf("%d -> Додати тип", i + 1);
                 int index = s.nextInt();
                 if (index == i + 1) {
-                    JsonConverter.convertToJson(new JsonConverterDataBuilder(jcd).addType(new StoneType()).build());
+                    JsonConverter.convertToJson(
+                            new JsonConverterDataBuilder(jcd)
+                                    .addType(new StoneTypeBuilder().build())
+                                    .build());
                 } else
                     this.type = types.get(index);
             }
@@ -109,7 +102,7 @@ public class PreciousStone {
         return weight;
     }
 
-    protected void setWeight(double weight) {
+    protected void setWeight(int weight) {
         this.weight = weight;
     }
 

@@ -36,4 +36,13 @@ public class Necklace {
     private void writeChanges (){
         JsonConverter.convertToJson(new JsonConverterDataBuilder().setNecklace(this).build());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Намисто з порядком каменів :");
+        for (PreciousStone stone:stones) {
+            sb.append(String.format("\n%s - %s",stone.getType().getName(), stone.getName()));
+        }
+        return sb.toString();
+    }
 }

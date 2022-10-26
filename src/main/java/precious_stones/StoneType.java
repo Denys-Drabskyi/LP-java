@@ -3,17 +3,12 @@ package precious_stones;
 import java.util.Scanner;
 
 public class StoneType {
-    String name;
-    int value;
+    private String name;
+    private int value;
 
     public StoneType(String name, int value) {
         this.name = name;
         this.value = value;
-    }
-
-    public StoneType() {
-        this.name = null;
-        this.value = 0;
         init();
     }
 
@@ -24,7 +19,7 @@ public class StoneType {
         this.name = s.nextLine();
         }
         while (value < 0){
-            System.out.println("Введіть рейтинг типу, де 0 - найрідкісніший тип");
+            System.out.println("Введіть рейтинг типу, де 1 - найрідкісніший тип");
             this.value = s.nextInt();
         }
 

@@ -46,5 +46,4 @@ public abstract class Command {
         rez.put("count",count);
         return rez;
     }
-
 }

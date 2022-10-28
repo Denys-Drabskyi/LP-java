@@ -12,9 +12,6 @@ public class Necklace {
     private List<PreciousStone> stones;
 
     public Necklace(List<PreciousStone> stones) {
-//        TreeSet<PreciousStone> set = new TreeSet<>(new MyComparator());
-//        set.addAll(stones);
-//        this.stones = set;
         this.stones = stones;
     }
 

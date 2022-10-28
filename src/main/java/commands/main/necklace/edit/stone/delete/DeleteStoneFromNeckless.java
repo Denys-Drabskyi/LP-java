@@ -1,6 +1,7 @@
 package commands.main.necklace.edit.stone.delete;
 
 import commands.Command;
+import commands.main.necklace.edit.EditNeckless;
 import json.JsonConverterData;
 
 public class DeleteStoneFromNeckless extends Command {
@@ -10,10 +11,14 @@ public class DeleteStoneFromNeckless extends Command {
         this.stoneIndexInNeckless = stoneIndexInNeckless;
     }
 
-    // TODO: 27.10.2022  
     @Override
     public boolean execute() {
-        
+        data.getNecklace().getStones().remove(stoneIndexInNeckless);
+        System.out.println("видалено");
+
+        updateData();
+
+        new EditNeckless(data).execute();
         return true;
     }
 }

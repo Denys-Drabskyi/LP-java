@@ -1,20 +1,23 @@
 package json;
 
 import necklace.Necklace;
+import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
 import precious_stones.StoneType;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class JsonConverterData {
     private final List<PreciousStone> stones;
-    private final Necklace necklace;
+    private Necklace necklace;
     private final List<StoneType> types;
 
-    public JsonConverterData(List<PreciousStone> test, Necklace necklace, List<StoneType> types) {
-        this.necklace = necklace;
-        this.stones = test;
-        this.types = types;
+    public JsonConverterData(List<PreciousStone> stones, Necklace necklace, List<StoneType> types) {
+        this.necklace = Objects.requireNonNullElseGet(necklace, () -> new Necklace(new ArrayList<>()));
+        this.stones = Objects.requireNonNullElseGet(stones, ArrayList::new);
+        this.types = Objects.requireNonNullElseGet(types, ArrayList::new);
     }
 
     public List<PreciousStone> getStones() {
@@ -27,5 +30,9 @@ public class JsonConverterData {
 
     public List<StoneType> getTypes() {
         return types;
+    }
+
+    public void newNecklace (){
+        this.necklace = new Necklace(new ArrayList<>());
     }
 }

@@ -16,7 +16,7 @@ public class EditStoneInNeckless extends Command {
     public boolean execute() {
         int i = 0;
         while (i < 1 || i > 2){
-            System.out.printf("%s\n1 -> замінити\n2 -> видалити", data.getStones().get(stoneIndexInNeckless));
+            System.out.printf("%s\n1 -> замінити\n2 -> видалити", data.getNecklace().getStones().get(stoneIndexInNeckless));
             i = s.nextInt();
         }
         switch (i){

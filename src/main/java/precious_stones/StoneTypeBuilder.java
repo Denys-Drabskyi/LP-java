@@ -2,7 +2,7 @@ package precious_stones;
 
 public class StoneTypeBuilder {
     private String name = null;
-    private int value = 0;
+    private int value = -1;
 
     public StoneType build(){
         return new StoneType(name,value);

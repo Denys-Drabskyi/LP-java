@@ -37,11 +37,21 @@ public class PreciousStone {
             System.out.println("Введіть вагу в каратах каменю");
             this.weight = s.nextInt();
         }
-        while (transparency < 0 || transparency > 1){
-            System.out.println("Введіть відсоток прозорості де 10% = 0,1 каменю");
-            this.transparency = s.nextDouble();
-        }
+        transparencyValidator(s);
         typeValidator(s);
+    }
+
+    private void transparencyValidator(Scanner s){
+        while (this.transparency < 0 || this.transparency > 1){
+            System.out.println("Введіть відсоток прозорості де 10% = 0,1 каменю");
+            try {
+                this.transparency = s.nextDouble();
+            } catch (Exception e){
+                System.out.println("Для введення типу дробових чисел слід використовувати знак ',' замісь '.'");
+                this.transparency = -1;
+                transparencyValidator(s);
+            }
+        }
     }
 
     private void typeValidator (Scanner s){
@@ -51,15 +61,19 @@ public class PreciousStone {
             while (type == null) {
                 System.out.println("Виберіть тип каменю\n");
                 int i = 0;
-                while (i < types.size())
-                    System.out.printf("%d: %s, рідкість = %d", i, types.get(i).getName(), types.get(i).getValue());
-                System.out.printf("%d -> Додати тип", i + 1);
+                while (i < types.size()) {
+                    System.out.printf("%d: %s, рідкість = %d\n", i, types.get(i).getName(), types.get(i).getValue());
+                    i++;
+                }
+                System.out.printf("%d -> Додати тип", i);
                 int index = s.nextInt();
-                if (index == i + 1) {
+                if (index == i) {
+                    StoneType stoneType = new StoneTypeBuilder().build();
                     JsonConverter.convertToJson(
                             new JsonConverterDataBuilder(jcd)
-                                    .addType(new StoneTypeBuilder().build())
+                                    .addType(stoneType)
                                     .build());
+                    this.type = stoneType;
                 } else
                     this.type = types.get(index);
             }
@@ -108,7 +122,32 @@ public class PreciousStone {
 
     @Override
     public String toString() {
-        return String.format("камінь: ім'я = %s тип = %s, ціна за карат = %d, вага = %d, прозорість =%s",
-                name, type.toString(), pricePerCarat, weight, transparency);
+        return String.format("тип = %s,\t ім'я = %s,\t ціна за карат = %d,\t вага = %d,\t прозорість = %s",
+                type.toString(), name, pricePerCarat, weight, transparency);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PreciousStone that)) return false;
+
+        if (getPricePerCarat() != that.getPricePerCarat()) return false;
+        if (getWeight() != that.getWeight()) return false;
+        if (Double.compare(that.getTransparency(), getTransparency()) != 0) return false;
+        if (!getName().equals(that.getName())) return false;
+        return getType().equals(that.getType());
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getName().hashCode();
+        result = 31 * result + getPricePerCarat();
+        result = (int) (31 * result + getWeight());
+        temp = Double.doubleToLongBits(getTransparency());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getType().hashCode();
+        return result;
     }
 }

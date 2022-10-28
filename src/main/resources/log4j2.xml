@@ -40,22 +40,21 @@
 
     </Appenders>
     <Loggers>
-        <Logger name="com.example.periodicals.test_Main" level="info" additivity="false">
-            <AppenderRef ref="LogToFile2"/>
-            <AppenderRef ref="LogToConsole"/>
-        </Logger>
-
-<!--        Для виводу інформації про активні підключення trace -->
-        <Logger name="com.example.periodicals.dao.ConnectionPool" level="error" additivity="false">
-            <AppenderRef ref="LogToConsoleConnectionsInfo"/>
-        </Logger>
-
-<!--        <Logger name="src.main.webapp" level="trace">-->
-<!--&lt;!&ndash;            <AppenderRef ref="LogToFile2"/>&ndash;&gt;-->
+<!--        <Logger name="com.example.periodicals.test_Main" level="info" additivity="false">-->
+<!--            <AppenderRef ref="LogToFile2"/>-->
 <!--            <AppenderRef ref="LogToConsole"/>-->
 <!--        </Logger>-->
 
-        <Root level="trace">
+<!--&lt;!&ndash;        Для виводу інформації про активні підключення trace &ndash;&gt;-->
+<!--        <Logger name="com.example.periodicals.dao.ConnectionPool" level="error" additivity="false">-->
+<!--            <AppenderRef ref="LogToConsoleConnectionsInfo"/>-->
+<!--        </Logger>-->
+
+<!--        <Root level="trace">-->
+<!--            <AppenderRef ref="LogToFile2"/>-->
+<!--            <AppenderRef ref="LogToConsole"/>-->
+<!--        </Root>-->
+        <Root level="debug">
             <AppenderRef ref="LogToFile2"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>

@@ -20,8 +20,9 @@ public class JsonConverter {
 
     public static void convertToJson(JsonConverterData jsonConverterData){
         try (FileWriter writer = new FileWriter(path)){
-            logger.debug(gson.toJson(jsonConverterData));
-            writer.write(gson.toJson(jsonConverterData));
+            String json = gson.toJson(jsonConverterData);
+            logger.trace(json);
+            writer.write(json);
         } catch (IOException e) {
             logger.error("cannot write file\n" + e.getMessage());
         }

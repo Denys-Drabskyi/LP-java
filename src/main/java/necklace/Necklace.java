@@ -9,24 +9,24 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Necklace {
-    private List<PreciousStone> stones;
+    private LinkedHashSet<PreciousStone> stones;
 
-    public Necklace(List<PreciousStone> stones) {
+    public Necklace(LinkedHashSet<PreciousStone> stones) {
         this.stones = stones;
     }
 
-    public List<PreciousStone> getStones() {
+    public LinkedHashSet<PreciousStone> getStones() {
         return stones;
     }
 
-    public void setStones(ArrayList<PreciousStone> stones) {
+    public void setStones(LinkedHashSet<PreciousStone> stones) {
         this.stones = stones;
     }
 
     public void sortByRarityAndValue (){
         TreeSet<PreciousStone> treeSet = new TreeSet<>(new MyComparator());
         treeSet.addAll(stones);
-        this.stones = new ArrayList<>(treeSet);
+        this.stones = new LinkedHashSet<>(treeSet);
         System.out.printf("Посортовані каміння: %s",stones);
     }
 
@@ -35,8 +35,10 @@ public class Necklace {
     }
 
     public void replaceStone (int index, PreciousStone stone){
-        this.stones.remove(index);
-        this.stones.add(index, stone);
+        ArrayList<PreciousStone> list = new ArrayList<>(stones);
+        list.remove(index);
+        list.add(index, stone);
+        this.stones = new LinkedHashSet<>(list);
     }
 
 

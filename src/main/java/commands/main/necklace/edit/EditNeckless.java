@@ -17,7 +17,7 @@ public class EditNeckless extends Command {
         System.out.println("виберіть камінь, який потрібно модифікувати/замінити/видалити");
         int i = 0;
         while (i < data.getNecklace().getStones().size()){
-            sb.append(String.format("%d: %s \n",i,data.getNecklace().getStones().get(i).toString()));
+            sb.append(String.format("%d: %s \n",i,data.getNecklace().getStones(). get(i).toString()));
             i++;
         }
         sb.append(String.format("%d -> додати камінь\n",i+1));

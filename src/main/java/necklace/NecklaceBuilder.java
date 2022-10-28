@@ -3,16 +3,17 @@ package necklace;
 import precious_stones.PreciousStone;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 public class NecklaceBuilder {
-    List<PreciousStone> stones;
+    LinkedHashSet<PreciousStone> stones;
 
     public NecklaceBuilder() {
-        stones = new ArrayList<>();
+        stones = new LinkedHashSet<>();
     }
 
-    public NecklaceBuilder setStones(List<PreciousStone> stones) {
+    public NecklaceBuilder setStones(LinkedHashSet<PreciousStone> stones) {
         this.stones = stones;
         return this;
     }

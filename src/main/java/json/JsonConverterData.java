@@ -6,6 +6,7 @@ import precious_stones.PreciousStone;
 import precious_stones.StoneType;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,7 @@ public class JsonConverterData {
     private final List<StoneType> types;
 
     public JsonConverterData(List<PreciousStone> stones, Necklace necklace, List<StoneType> types) {
-        this.necklace = Objects.requireNonNullElseGet(necklace, () -> new Necklace(new ArrayList<>()));
+        this.necklace = Objects.requireNonNullElseGet(necklace, () -> new Necklace(new LinkedHashSet<>()));
         this.stones = Objects.requireNonNullElseGet(stones, ArrayList::new);
         this.types = Objects.requireNonNullElseGet(types, ArrayList::new);
     }
@@ -33,6 +34,6 @@ public class JsonConverterData {
     }
 
     public void newNecklace (){
-        this.necklace = new Necklace(new ArrayList<>());
+        this.necklace = new Necklace(new LinkedHashSet<>());
     }
 }

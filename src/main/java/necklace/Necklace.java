@@ -36,6 +36,7 @@ public class Necklace {
         list.remove(index);
         list.add(index,stone);
         log.info("replaced stone in necklace from "+list.get(index).getName()+" to " + stone.getName());
+        this.stones = new LinkedHashSet<>(list);
     }
 
     @Override

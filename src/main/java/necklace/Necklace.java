@@ -1,13 +1,11 @@
 package necklace;
 
 import comparators.MyComparator;
-import json.JsonConverter;
-import json.JsonConverterDataBuilder;
+import lombok.extern.slf4j.Slf4j;
 import precious_stones.PreciousStone;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
+@Slf4j
 public class Necklace {
     private LinkedHashSet<PreciousStone> stones;
 
@@ -33,14 +31,12 @@ public class Necklace {
     public void addStone (PreciousStone stone){
         this.stones.add(stone);
     }
-
     public void replaceStone (int index, PreciousStone stone){
-        ArrayList<PreciousStone> list = new ArrayList<>(stones);
+        List<PreciousStone> list = new ArrayList<>(this.stones.stream().toList());
         list.remove(index);
-        list.add(index, stone);
-        this.stones = new LinkedHashSet<>(list);
+        list.add(index,stone);
+        log.info("replaced stone in necklace from "+list.get(index).getName()+" to " + stone.getName());
     }
-
 
     @Override
     public String toString() {

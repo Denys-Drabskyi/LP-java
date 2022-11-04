@@ -25,6 +25,22 @@ public class StoneType {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StoneType stoneType)) return false;
+
+        if (getValue() != stoneType.getValue()) return false;
+        return getName() != null ? getName().equals(stoneType.getName()) : stoneType.getName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + getValue();
+        return result;
+    }
+
     public String getName() {
         return name;
     }

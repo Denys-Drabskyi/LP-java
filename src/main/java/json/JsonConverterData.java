@@ -4,11 +4,8 @@ import necklace.Necklace;
 import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
 import precious_stones.StoneType;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Objects;
 
 public class JsonConverterData {
     private final List<PreciousStone> stones;

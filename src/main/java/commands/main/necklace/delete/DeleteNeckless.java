@@ -3,11 +3,7 @@ package commands.main.necklace.delete;
 import commands.Command;
 import commands.main.necklace.MyNecklace;
 import json.JsonConverterData;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.TreeSet;
 
 public class DeleteNeckless extends Command {
     public DeleteNeckless(JsonConverterData jsonConverterData) {

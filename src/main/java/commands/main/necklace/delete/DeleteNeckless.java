@@ -3,10 +3,7 @@ package commands.main.necklace.delete;
 import commands.Command;
 import commands.main.necklace.MyNecklace;
 import json.JsonConverterData;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.TreeSet;
+import java.util.LinkedHashSet;
 
 public class DeleteNeckless extends Command {
     public DeleteNeckless(JsonConverterData jsonConverterData) {
@@ -15,7 +12,7 @@ public class DeleteNeckless extends Command {
 
     @Override
     public boolean execute() {
-        data.getNecklace().setStones(new ArrayList<>());
+        data.getNecklace().setStones(new LinkedHashSet<>());
         logger.info("necklace was cleared");
         System.out.println("Намисто видалено");
 

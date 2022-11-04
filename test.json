@@ -39,20 +39,20 @@
         "name": "testtype",
         "value": 4
       }
+    },
+    {
+      "name": "jk",
+      "pricePerCarat": 12,
+      "weight": 1,
+      "transparency": 0.5,
+      "type": {
+        "name": "Diamond",
+        "value": 0
+      }
     }
   ],
   "necklace": {
     "stones": [
-      {
-        "name": "some diamond",
-        "pricePerCarat": 1,
-        "weight": 1,
-        "transparency": 1.0,
-        "type": {
-          "name": "testDiamond",
-          "value": 3
-        }
-      },
       {
         "name": "test",
         "pricePerCarat": 1,
@@ -64,16 +64,6 @@
         }
       },
       {
-        "name": "atest2",
-        "pricePerCarat": 10,
-        "weight": 10,
-        "transparency": 0.2,
-        "type": {
-          "name": "name",
-          "value": 0
-        }
-      },
-      {
         "name": "some diamond",
         "pricePerCarat": 1,
         "weight": 1,
@@ -81,6 +71,26 @@
         "type": {
           "name": "testDiamond",
           "value": 3
+        }
+      },
+      {
+        "name": "рол",
+        "pricePerCarat": 10,
+        "weight": 10,
+        "transparency": 0.0,
+        "type": {
+          "name": "name",
+          "value": 0
+        }
+      },
+      {
+        "name": "jk",
+        "pricePerCarat": 12,
+        "weight": 1,
+        "transparency": 0.5,
+        "type": {
+          "name": "Diamond",
+          "value": 0
         }
       }
     ]

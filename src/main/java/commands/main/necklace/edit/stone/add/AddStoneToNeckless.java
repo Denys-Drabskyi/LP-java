@@ -15,8 +15,8 @@ public class AddStoneToNeckless extends Command {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         System.out.println("Виберіть камінь, який хочете добавити");
-        List<PreciousStone> unusedStones = data.getStones().stream()
-                .filter(x -> ! data.getNecklace().getStones().contains(x))
+        List<PreciousStone> unusedStones = data().getStones().stream()
+                .filter(x -> ! data().getNecklace().getStones().contains(x))
                 .toList();
 
         while (i<unusedStones.size()){
@@ -30,15 +30,15 @@ public class AddStoneToNeckless extends Command {
 
         do {
             System.out.println(sb);
-            i = s.nextInt();
+            i = scanner().nextInt();
         } while (i < 0 || i > unusedStones.size());
 
         if (i == unusedStones.size())
-            new EditNeckless(data).execute();
+            new EditNeckless(data()).execute();
 
-        data.getNecklace().addStone(unusedStones.get(i));
+        data().getNecklace().addStone(unusedStones.get(i));
         updateData();
-        new  EditNeckless(data).execute();
+        new  EditNeckless(data()).execute();
         return true;
     }
 

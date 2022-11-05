@@ -3,7 +3,6 @@ package precious_stones;
 import json.JsonConverter;
 import json.JsonConverterData;
 import json.JsonConverterDataBuilder;
-
 import java.util.List;
 import java.util.Scanner;
 

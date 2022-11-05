@@ -19,8 +19,8 @@ public class EditNeckless extends Command {
         StringBuilder sb = new StringBuilder();
         System.out.println("виберіть камінь, який потрібно модифікувати/замінити/видалити");
         int i = 0;
-        List<PreciousStone> stones = data.getNecklace().getStones().stream().toList();
-        while (i < data.getNecklace().getStones().size()){
+        List<PreciousStone> stones = data().getNecklace().getStones().stream().toList();
+        while (i < data().getNecklace().getStones().size()){
             sb.append(String.format("%d: %s \n",i,stones.get(i).toString()));
             i++;
         }
@@ -30,14 +30,14 @@ public class EditNeckless extends Command {
         i = -1;
         while (i<0 || i > count+1){
             System.out.println(sb);
-            i = s.nextInt();
+            i = scanner().nextInt();
         }
-        if (i < data.getNecklace().getStones().size())
-            new EditStoneInNeckless(data, i).execute();
+        if (i < data().getNecklace().getStones().size())
+            new EditStoneInNeckless(data(), i).execute();
         if (i == count)
-            new AddStoneToNeckless(data).execute();
+            new AddStoneToNeckless(data()).execute();
         else
-            new MyNecklace(data).execute();
+            new MyNecklace(data()).execute();
         return true;
     }
 }

@@ -13,9 +13,22 @@ import java.util.Scanner;
 
 public abstract class Command {
 
-    public JsonConverterData data;
-    public Logger logger = LoggerFactory.getLogger(this.getClass());
-    public Scanner s = new Scanner(System.in);
+    private JsonConverterData data;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Scanner s = new Scanner(System.in);
+
+    public JsonConverterData data() {
+        return data;
+    }
+
+    public Logger logger() {
+        return logger;
+    }
+
+    public Scanner scanner() {
+        return s;
+    }
+
     public abstract boolean execute();
 
     public Command(JsonConverterData jsonConverterData) {

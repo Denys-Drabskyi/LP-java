@@ -18,12 +18,12 @@ public class MainMenu extends Command {
         int i = 0;
         while (i<1 || i >3){
             System.out.println("1 -> моє намисто\n2 -> мої камінці\n3 -> налаштування");
-            i = s.nextInt();
+            i = scanner().nextInt();
         }
         switch (i){
-            case 1 -> new MyNecklace(data).execute();
-            case 2 -> new MyStones(data).execute();
-            case 3 -> new Settings(data).execute();
+            case 1 -> new MyNecklace(data()).execute();
+            case 2 -> new MyStones(data()).execute();
+            case 3 -> new Settings(data()).execute();
         }
         return true;
     }

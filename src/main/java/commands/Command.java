@@ -5,8 +5,6 @@ import json.JsonConverterData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +13,7 @@ public abstract class Command {
 
     private JsonConverterData data;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    private Scanner s = new Scanner(System.in);
+    private final Scanner s = new Scanner(System.in);
 
     public JsonConverterData data() {
         return data;
@@ -58,5 +56,16 @@ public abstract class Command {
         rez.put("i",i);
         rez.put("count",count);
         return rez;
+    }
+
+    public int getInteger(){
+        int i;
+        try {
+            i = s.nextInt();
+        } catch (Exception e){
+            System.out.println("введено не число");
+            i = -1;
+        }
+        return i;
     }
 }

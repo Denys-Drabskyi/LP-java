@@ -1,45 +1,55 @@
 package commands.main;
 
+import commands.main.necklace.MyNecklace;
 import json.JsonConverterData;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class MainMenuTest {
-//    @Mock
     MainMenu mainMenu;
-
     @Mock
     JsonConverterData jsonConverterData;
 
-    @BeforeEach
-    void init (){
-        MockitoAnnotations.openMocks(this);
+//    Integer counter = 0;
+//    @BeforeEach
+//    void init (){
+//        MockitoAnnotations.openMocks(this);
+////        String input = "add 5";
+//        InputStream in = new ByteArrayInputStream(String.valueOf(counter).getBytes(StandardCharsets.UTF_8));
+//        System.setIn(in);
+//        mainMenu = new MainMenu(jsonConverterData);
+//
+//    }
+
+//    @AfterEach
+//    void counterAddition (){
+//        counter++;
+//    }
+
+//    @Test
+//    public void shouldTakeUserInput() {
+//        assertEquals("add 5", mainMenu.scanner().nextLine());
+//        assertEquals(3, mainMenu.scanner().nextInt());
+//    }
+
+    @Test
+    void inputsTest(){
+        String testInput = "0\n1";
+        InputStream in = new ByteArrayInputStream(testInput.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
         mainMenu = new MainMenu(jsonConverterData);
-    }
-
-    @Test
-    public void shouldTakeUserInput() {
-        String input = "add 5";
-        InputStream in = new ByteArrayInputStream(input.getBytes());
-        System.setIn(in);
-        assertEquals("add 5", mainMenu.scanner().nextLine());
-    }
-
-    @Test
-    void execute() {
-        InputStream stdin = System.in;
-        System.setIn(new ByteArrayInputStream("3\n4\n".getBytes()));
-        assertEquals("3", mainMenu.scanner().nextLine());
-
-    }
-
-    void setInputStream(String s){
-        InputStream in = new ByteArrayInputStream(s.getBytes());
-        System.setIn(in);
+        mainMenu.execute();
+        verify(mainMenu, times(2)).scanner();
+        verify(mainMenu, times(1)).data();
     }
 }

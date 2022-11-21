@@ -10,8 +10,8 @@ public class Settings extends Command {
 
     // TODO: 27.10.2022  
     @Override
-    public boolean execute() {
+    public Command execute() {
         System.out.println("поки пусто");
-        return true;
+        return null;
     }
 }

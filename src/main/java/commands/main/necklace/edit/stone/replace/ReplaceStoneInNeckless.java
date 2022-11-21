@@ -5,8 +5,6 @@ import commands.main.necklace.edit.EditNeckless;
 import json.JsonConverterData;
 import precious_stones.PreciousStone;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ReplaceStoneInNeckless extends Command {
@@ -17,7 +15,7 @@ public class ReplaceStoneInNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         StringBuilder sb = new StringBuilder("Виберіть камінь на який хочете замінити\n");
 
         List<PreciousStone> unusedStones = data().getStones().stream()
@@ -46,7 +44,6 @@ public class ReplaceStoneInNeckless extends Command {
 
         updateData();
 
-        new  EditNeckless(data()).execute();
-        return true;
+        return new EditNeckless(data());
     }
 }

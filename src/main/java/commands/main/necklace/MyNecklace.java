@@ -14,7 +14,7 @@ public class MyNecklace extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         System.out.flush();
         if (data().getNecklace() == null)
             necklaceIsNull();
@@ -34,13 +34,21 @@ public class MyNecklace extends Command {
                 i = scanner().nextInt();
             }
             switch (i) {
-                case 1 -> new EditNeckless(data()).execute();
-                case 2 -> new SortStonesInNeckless(data()).execute();
-                case 3 -> new DeleteNeckless(data()).execute();
-                case 4 -> new MainMenu(data()).execute();
+                case 1 -> {
+                    return new EditNeckless(data());
+                }
+                case 2 -> {
+                    return new SortStonesInNeckless(data());
+                }
+                case 3 -> {
+                    return new DeleteNeckless(data());
+                }
+                case 4 -> {
+                    return new MainMenu(data());
+                }
             }
         }
-        return true;
+        return null;
     }
 
     private void necklaceIsNull(){

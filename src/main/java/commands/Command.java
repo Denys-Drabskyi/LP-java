@@ -2,6 +2,7 @@ package commands;
 
 import json.JsonConverter;
 import json.JsonConverterData;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
@@ -9,10 +10,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+@Slf4j
 public abstract class Command {
 
     private JsonConverterData data;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Scanner s = new Scanner(System.in);
 
     public JsonConverterData data() {
@@ -27,7 +29,7 @@ public abstract class Command {
         return s;
     }
 
-    public abstract boolean execute();
+    public abstract Command execute();
 
     public Command(JsonConverterData jsonConverterData) {
         this.data = jsonConverterData;
@@ -37,35 +39,5 @@ public abstract class Command {
         JsonConverter.convertToJson(data);
     }
 
-    protected HashMap<String,Integer> printStones (String msg, List<PreciousStone> stones){
-        StringBuilder sb = new StringBuilder();
-        System.out.println(msg);
-        int i = 0;
-        while (i<stones.size()){
-            sb.append(String.format("%d: %s\n",
-                    i,
-                    stones.get(i)));
-            i++;
-        }
-        int count = i;
-        do {
-            System.out.println(sb);
-            i = s.nextInt();
-        } while (i < 0 || i > count);
-        HashMap<String,Integer> rez = new HashMap<>();
-        rez.put("i",i);
-        rez.put("count",count);
-        return rez;
-    }
 
-    public int getInteger(){
-        int i;
-        try {
-            i = s.nextInt();
-        } catch (Exception e){
-            System.out.println("введено не число");
-            i = -1;
-        }
-        return i;
-    }
 }

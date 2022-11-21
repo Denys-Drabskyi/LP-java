@@ -10,7 +10,7 @@ public class ManageStone extends Command {
     }
 
     @Override
-    public boolean execute() {
-        return false;
+    public Command execute() {
+        return null;
     }
 }

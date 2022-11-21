@@ -1,3 +1,4 @@
+import commands.CommandProcessor;
 import commands.main.MainMenu;
 import json.JsonConverter;
 import json.JsonConverterData;
@@ -5,6 +6,7 @@ import json.JsonConverterData;
 public class Program {
     public static void main(String[] args) {
         JsonConverterData jsonConverterData = JsonConverter.convertToJsonConverterData();
-        new MainMenu(jsonConverterData).execute();
+        CommandProcessor commandProcessor = new CommandProcessor(new MainMenu(jsonConverterData));
+        commandProcessor.execute();
     }
 }

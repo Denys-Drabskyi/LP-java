@@ -15,7 +15,7 @@ public class EditNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         StringBuilder sb = new StringBuilder();
         System.out.println("виберіть камінь, який потрібно модифікувати/замінити/видалити");
         int i = 0;
@@ -33,11 +33,10 @@ public class EditNeckless extends Command {
             i = scanner().nextInt();
         }
         if (i < data().getNecklace().getStones().size())
-            new EditStoneInNeckless(data(), i).execute();
+            return new EditStoneInNeckless(data(), i);
         if (i == count)
-            new AddStoneToNeckless(data()).execute();
+            return new AddStoneToNeckless(data());
         else
-            new MyNecklace(data()).execute();
-        return true;
+            return new MyNecklace(data());
     }
 }

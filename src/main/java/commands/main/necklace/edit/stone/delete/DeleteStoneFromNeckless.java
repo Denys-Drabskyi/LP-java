@@ -13,12 +13,11 @@ public class DeleteStoneFromNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         data().getNecklace().getStones().remove(stone);
         System.out.println("видалено");
         logger().info(String.format("deleted stone %s from necklace", stone.getName()));
         updateData();
-        new EditNeckless(data()).execute();
-        return true;
+        return new EditNeckless(data());
     }
 }

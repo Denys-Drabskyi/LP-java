@@ -2,7 +2,6 @@ package commands.main.necklace.edit.stone.add;
 
 import commands.Command;
 import commands.main.necklace.edit.EditNeckless;
-import commands.main.necklace.edit.stone.EditStoneInNeckless;
 import json.JsonConverterData;
 import precious_stones.PreciousStone;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class AddStoneToNeckless extends Command {
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         System.out.println("Виберіть камінь, який хочете добавити");
@@ -38,8 +37,7 @@ public class AddStoneToNeckless extends Command {
 
         data().getNecklace().addStone(unusedStones.get(i));
         updateData();
-        new  EditNeckless(data()).execute();
-        return true;
+        return new EditNeckless(data());
     }
 
     public AddStoneToNeckless(JsonConverterData data) {

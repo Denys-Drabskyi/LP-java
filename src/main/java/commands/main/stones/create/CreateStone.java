@@ -12,7 +12,7 @@ public class CreateStone extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
 
         PreciousStone preciousStone = new PreciousStoneBuilder().build();
         data().getStones().add(preciousStone);
@@ -23,7 +23,6 @@ public class CreateStone extends Command {
 
         updateData();
 
-        new MyStones(data()).execute();
-        return false;
+        return new MyStones(data());
     }
 }

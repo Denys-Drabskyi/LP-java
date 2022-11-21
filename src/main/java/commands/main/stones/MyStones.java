@@ -16,7 +16,7 @@ public class MyStones extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         System.out.flush();
         List<PreciousStone> stones = data().getStones();
         StringBuilder sb = new StringBuilder();
@@ -39,11 +39,10 @@ public class MyStones extends Command {
         }
 
         if (i < stones.size())
-            new ManageStone(data(),stones.get(i));
+            return new ManageStone(data(),stones.get(i));
         if (i == stones.size()+1)
-            new CreateStone(data()).execute();
+            return new CreateStone(data());
         else
-            new MainMenu(data()).execute();
-        return true;
+            return new MainMenu(data());
     }
 }

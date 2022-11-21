@@ -1,6 +1,9 @@
 package commands.main;
 
+import commands.Command;
 import commands.main.necklace.MyNecklace;
+import commands.main.settings.Settings;
+import commands.main.stones.MyStones;
 import json.JsonConverterData;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,36 +23,38 @@ class MainMenuTest {
     @Mock
     JsonConverterData jsonConverterData;
 
-//    Integer counter = 0;
-//    @BeforeEach
-//    void init (){
-//        MockitoAnnotations.openMocks(this);
-////        String input = "add 5";
-//        InputStream in = new ByteArrayInputStream(String.valueOf(counter).getBytes(StandardCharsets.UTF_8));
-//        System.setIn(in);
-//        mainMenu = new MainMenu(jsonConverterData);
-//
-//    }
+    @BeforeEach
+    public void testPreparing (){
 
-//    @AfterEach
-//    void counterAddition (){
-//        counter++;
-//    }
-
-//    @Test
-//    public void shouldTakeUserInput() {
-//        assertEquals("add 5", mainMenu.scanner().nextLine());
-//        assertEquals(3, mainMenu.scanner().nextInt());
-//    }
-
+    }
     @Test
-    void inputsTest(){
+    void shouldReturnMyNecklace(){
         String testInput = "0\n1";
         InputStream in = new ByteArrayInputStream(testInput.getBytes(StandardCharsets.UTF_8));
         System.setIn(in);
         mainMenu = new MainMenu(jsonConverterData);
-        mainMenu.execute();
-        verify(mainMenu, times(2)).scanner();
-        verify(mainMenu, times(1)).data();
+        Command command = mainMenu.execute();
+        assertEquals(command.getClass(),MyNecklace.class);
+
+    }
+    @Test
+    void shouldReturnMyStones(){
+        String testInput = "2";
+        InputStream in = new ByteArrayInputStream(testInput.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        mainMenu = new MainMenu(jsonConverterData);
+        Command command = mainMenu.execute();
+        assertEquals(command.getClass(), MyStones.class);
+
+    }
+    @Test
+    void shouldReturnSettings(){
+        String testInput = "3";
+        InputStream in = new ByteArrayInputStream(testInput.getBytes(StandardCharsets.UTF_8));
+        System.setIn(in);
+        mainMenu = new MainMenu(jsonConverterData);
+        Command command = mainMenu.execute();
+        assertEquals(command.getClass(), Settings.class);
+
     }
 }

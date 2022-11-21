@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-@Slf4j
 public abstract class Command {
 
     private JsonConverterData data;

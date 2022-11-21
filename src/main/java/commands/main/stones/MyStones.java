@@ -16,12 +16,12 @@ public class MyStones extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         System.out.flush();
-        List<PreciousStone> stones = data.getStones();
+        List<PreciousStone> stones = data().getStones();
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        logger.info(String.format("Список каменів %s",stones.toString()));
+        logger().info(String.format("Список каменів %s",stones.toString()));
         while (i<stones.size()){
             sb.append(String.format("%d: назва каменю = %s, тип = %s\n",
                     i,
@@ -35,15 +35,14 @@ public class MyStones extends Command {
         i=-1;
         while (i<0||i>count+2){
             System.out.println(sb);
-            i = s.nextInt();
+            i = scanner().nextInt();
         }
 
         if (i < stones.size())
-            new ManageStone(data,stones.get(i));
+            return new ManageStone(data(),stones.get(i));
         if (i == stones.size()+1)
-            new CreateStone(data).execute();
+            return new CreateStone(data());
         else
-            new MainMenu(data).execute();
-        return true;
+            return new MainMenu(data());
     }
 }

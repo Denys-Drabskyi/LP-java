@@ -10,7 +10,7 @@ public class AddType extends Command {
     }
 
     @Override
-    public boolean execute() {
-        return false;
+    public Command execute() {
+        return null;
     }
 }

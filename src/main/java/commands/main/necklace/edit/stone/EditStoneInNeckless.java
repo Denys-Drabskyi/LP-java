@@ -16,17 +16,21 @@ public class EditStoneInNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         int i;
-        List<PreciousStone> stones = data.getNecklace().getStones().stream().toList();
+        List<PreciousStone> stones = data().getNecklace().getStones().stream().toList();
         do {
             System.out.printf("%s\n1 -> замінити\n2 -> видалити", stones.get(stoneIndexInNeckless));
-            i = s.nextInt();
+            i = scanner().nextInt();
         } while (i < 1 || i > 2);
         switch (i){
-            case 1 -> new ReplaceStoneInNeckless(data,stoneIndexInNeckless).execute();
-            case 2 -> new DeleteStoneFromNeckless(data,stones.get(stoneIndexInNeckless)).execute();
+            case 1 -> {
+                return new ReplaceStoneInNeckless(data(),stoneIndexInNeckless);
+            }
+            case 2 -> {
+                return new DeleteStoneFromNeckless(data(),stones.get(stoneIndexInNeckless));
+            }
         }
-        return true;
+        return null;
     }
 }

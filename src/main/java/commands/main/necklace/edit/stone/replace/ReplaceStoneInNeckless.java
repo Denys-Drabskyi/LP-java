@@ -5,8 +5,6 @@ import commands.main.necklace.edit.EditNeckless;
 import json.JsonConverterData;
 import precious_stones.PreciousStone;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ReplaceStoneInNeckless extends Command {
@@ -17,11 +15,11 @@ public class ReplaceStoneInNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         StringBuilder sb = new StringBuilder("Виберіть камінь на який хочете замінити\n");
 
-        List<PreciousStone> unusedStones = data.getStones().stream()
-                .filter(x -> ! data.getNecklace().getStones().contains(x))
+        List<PreciousStone> unusedStones = data().getStones().stream()
+                .filter(x -> ! data().getNecklace().getStones().contains(x))
                 .toList();
 
         int i = 0;
@@ -36,17 +34,16 @@ public class ReplaceStoneInNeckless extends Command {
 
         do {
             System.out.println(sb);
-            i = s.nextInt();
+            i = scanner().nextInt();
         } while (i<0 || i>unusedStones.size());
 
         if (i == unusedStones.size())
-            new EditNeckless(data).execute();
+            new EditNeckless(data()).execute();
 
-        data.getNecklace().replaceStone(stoneIndexInNeckless, unusedStones.get(i));
+        data().getNecklace().replaceStone(stoneIndexInNeckless, unusedStones.get(i));
 
         updateData();
 
-        new  EditNeckless(data).execute();
-        return true;
+        return new EditNeckless(data());
     }
 }

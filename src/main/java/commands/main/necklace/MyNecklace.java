@@ -14,15 +14,15 @@ public class MyNecklace extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public Command execute() {
         System.out.flush();
-        if (data.getNecklace() == null)
+        if (data().getNecklace() == null)
             necklaceIsNull();
-        else if (data.getNecklace().getStones().size() == 0)
+        else if (data().getNecklace().getStones().size() == 0)
             necklaceStoneBlank();
         else {
-            logger.info(String.format("necklace %s", data.getNecklace()));
-            System.out.println(data.getNecklace());
+            logger().info(String.format("necklace %s", data().getNecklace()));
+            System.out.println(data().getNecklace());
             int i = 0;
             while (i < 1 || i > 4) {
                 System.out.println(
@@ -31,26 +31,34 @@ public class MyNecklace extends Command {
                                 2 -> сортувати
                                 3 -> видалити
                                 4 -> назад""");
-                i = s.nextInt();
+                i = scanner().nextInt();
             }
             switch (i) {
-                case 1 -> new EditNeckless(data).execute();
-                case 2 -> new SortStonesInNeckless(data).execute();
-                case 3 -> new DeleteNeckless(data).execute();
-                case 4 -> new MainMenu(data).execute();
+                case 1 -> {
+                    return new EditNeckless(data());
+                }
+                case 2 -> {
+                    return new SortStonesInNeckless(data());
+                }
+                case 3 -> {
+                    return new DeleteNeckless(data());
+                }
+                case 4 -> {
+                    return new MainMenu(data());
+                }
             }
         }
-        return true;
+        return null;
     }
 
     private void necklaceIsNull(){
-        logger.info("necklace null");
-        data.newNecklace();
+        logger().info("necklace null");
+        data().newNecklace();
         necklaceStoneBlank();
     }
 
     private void necklaceStoneBlank(){
-        logger.info("necklace.getStones().size() == 0");
+        logger().info("necklace.getStones().size() == 0");
         System.out.println("У намисті немає каменів");
         int i = 0;
         while (i<1 || i>2){
@@ -58,11 +66,11 @@ public class MyNecklace extends Command {
                     """
                             1 -> редагувати
                             2 -> назад""");
-            i = s.nextInt();
+            i = scanner().nextInt();
         }
         switch (i){
-            case 1 -> new EditNeckless(data).execute();
-            case 2 -> new MainMenu(data).execute();
+            case 1 -> new EditNeckless(data()).execute();
+            case 2 -> new MainMenu(data()).execute();
         }
     }
 }

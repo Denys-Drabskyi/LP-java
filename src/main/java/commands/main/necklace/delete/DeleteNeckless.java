@@ -11,14 +11,14 @@ public class DeleteNeckless extends Command {
     }
 
     @Override
-    public boolean execute() {
-        data.getNecklace().setStones(new LinkedHashSet<>());
-        logger.info("necklace was cleared");
+    public Command execute() {
+        data().getNecklace().setStones(new LinkedHashSet<>());
+        logger().info("necklace was cleared");
         System.out.println("Намисто видалено");
 
         this.updateData();
 
-        new MyNecklace(data).execute();
-        return false;
+        return new MyNecklace(data());
+
     }
 }

@@ -4,11 +4,26 @@ import json.JsonConverterDataBuilder;
 import precious_stones.PreciousStone;
 import precious_stones.StoneType;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Main {
+    public static void main(String[] args) {
+        String input = "add 5";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+//        InputStream inputStream = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+//        System.setIn(inputStream);
+        Scanner s = new Scanner(System.in);
+        System.out.println(s.nextLine());
+    }
+
+
 //    public static void main(String[] args) {
 //        Comparator<PreciousStone> comparator = new Comparator<PreciousStone>() {
 //            @Override

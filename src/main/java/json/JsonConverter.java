@@ -85,7 +85,6 @@ public class JsonConverter {
                         "$                                # Anchor to end of string.            ",
                 Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.COMMENTS);
         Matcher matcher = pattern.matcher(text);
-        boolean isMatch = matcher.matches();
-        return isMatch;
+        return matcher.matches();
     }
 }

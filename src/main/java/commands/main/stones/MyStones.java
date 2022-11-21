@@ -21,7 +21,7 @@ public class MyStones extends Command {
         List<PreciousStone> stones = data().getStones();
         StringBuilder sb = new StringBuilder();
         int i = 0;
-        logger().info(String.format("Список каменів %s",stones.toString()));
+        logger().info("Список каменів {}",stones.toString());
         while (i<stones.size()){
             sb.append(String.format("%d: назва каменю = %s, тип = %s\n",
                     i,

@@ -23,10 +23,6 @@ class MainMenuTest {
     @Mock
     JsonConverterData jsonConverterData;
 
-    @BeforeEach
-    public void testPreparing (){
-
-    }
     @Test
     void shouldReturnMyNecklace(){
         String testInput = "0\n1";
@@ -34,7 +30,7 @@ class MainMenuTest {
         System.setIn(in);
         mainMenu = new MainMenu(jsonConverterData);
         Command command = mainMenu.execute();
-        assertEquals(command.getClass(),MyNecklace.class);
+        assertEquals(MyNecklace.class,command.getClass());
 
     }
     @Test
@@ -44,7 +40,7 @@ class MainMenuTest {
         System.setIn(in);
         mainMenu = new MainMenu(jsonConverterData);
         Command command = mainMenu.execute();
-        assertEquals(command.getClass(), MyStones.class);
+        assertEquals(MyStones.class, command.getClass());
 
     }
     @Test
@@ -54,7 +50,7 @@ class MainMenuTest {
         System.setIn(in);
         mainMenu = new MainMenu(jsonConverterData);
         Command command = mainMenu.execute();
-        assertEquals(command.getClass(), Settings.class);
+        assertEquals(Settings.class, command.getClass());
 
     }
 }

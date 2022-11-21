@@ -21,7 +21,7 @@ public class MyNecklace extends Command {
         else if (data().getNecklace().getStones().size() == 0)
             necklaceStoneBlank();
         else {
-            logger().info(String.format("necklace %s", data().getNecklace()));
+            logger().info("necklace {}", data().getNecklace());
             System.out.println(data().getNecklace());
             int i = 0;
             while (i < 1 || i > 4) {

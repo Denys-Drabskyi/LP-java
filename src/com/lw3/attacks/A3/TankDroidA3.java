@@ -3,11 +3,17 @@ package com.lw3.attacks.A3;
 import com.lw3.attacks.Attack;
 import com.lw3.droids.Droid;
 
-public class TankDroidA3 implements Attack {
-    int baseCoolDown = 5;
-    int lastUsed;
+public class TankDroidA3 extends Attack {
+    public TankDroidA3() {
+        this.baseCoolDown = 4;
+    }
+
     @Override
-    public void attack(Droid self, Droid enemy) {
-        enemy.setHp((int) (enemy.getHp() - self.getAtc()*3.5));
+    public boolean attack(Droid self, Droid enemy) {
+        if (coolDown == 0){
+            enemy.setHp((int) (enemy.getHp() - self.getAtc()*3.5));
+            return true;
+        }
+        return false;
     }
 }

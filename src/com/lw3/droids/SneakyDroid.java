@@ -1,5 +1,8 @@
 package com.lw3.droids;
 
+import com.lw3.attacks.A1.SneakyA1;
+import com.lw3.attacks.A2.SneakyA2;
+import com.lw3.attacks.A3.SneakyA3;
 import com.lw3.attacks.Attack;
 
 import java.util.Random;
@@ -7,8 +10,12 @@ import java.util.Random;
 public class SneakyDroid extends Droid{
     int additionalDamage = 0;
 
-    public SneakyDroid(Attack a1, Attack a2, Attack a3) {
-        super(a1, a2, a3);
+    public SneakyDroid() {
+        super(new SneakyA1(), new SneakyA2(), new SneakyA3());
+    }
+
+    public SneakyDroid(String name, int hp, int atc, int def) {
+        super(new SneakyA1(), new SneakyA2(), new SneakyA3(), name, hp, atc, def);
     }
 
     public int getAdditionalDamage() {

@@ -12,6 +12,7 @@ public abstract class Attack {
 
     public abstract boolean attack(Droid self, Droid enemy);
 
+
     public int getCoolDown(){
         return coolDown;
     }

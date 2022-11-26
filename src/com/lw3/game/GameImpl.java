@@ -5,16 +5,21 @@ import com.lw3.droids.Droid;
 import com.lw3.droids.SneakyDroid;
 import com.lw3.droids.TankDroid;
 import com.lw3.game.team.Team;
+import com.lw3.record.json.GameData;
 import com.lw3.record.json.JsonConverter;
 import com.lw3.record.json.JsonConverterData;
 
 import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GameImpl extends Game{
     private boolean firstTeamAttacks;
+    private boolean firstTeamStartsGame;
 
     private boolean recordedGame;
 
@@ -42,12 +47,12 @@ public class GameImpl extends Game{
         this.team2 = team2;
     }
 
-    public GameImpl(JsonConverterData data){
-        this.team1 = data.getTeam1();
-        this.team2 = data.getTeam2();
-        firstTeamAttacks = data.isFirstTeamAttacks();
+    public GameImpl(GameData gameData){
+        this.team1 = gameData.getTeam1();
+        this.team2 = gameData.getTeam2();
+        firstTeamAttacks = gameData.isFirstTeamAttacks();
         this.recordedGame = true;
-        System.setIn(new ByteArrayInputStream(data.getMoves().getBytes()));
+        System.setIn(new ByteArrayInputStream(gameData.getMoves().getBytes()));
     }
 
     @Override
@@ -72,7 +77,8 @@ public class GameImpl extends Game{
     private void gameEndOrNextRound(Team attackerTeam, Team defendingTeam){
         if (defendingTeam.droids().stream().noneMatch(droid -> droid.getHp() > 0)) {
             System.out.printf("%s перемогли", attackerTeam.name());
-            recordGame();
+            if (!recordedGame)
+                recordGame();
         }
         else
         {
@@ -222,6 +228,7 @@ public class GameImpl extends Game{
     private void firstRoundRandom(){
         if (round == 1) {
             firstTeamAttacks = new Random().nextBoolean();
+            firstTeamStartsGame = firstTeamAttacks;
             if (firstTeamAttacks)
                 System.out.println("Team "+team1.name()+ " attacks first");
             else
@@ -230,12 +237,15 @@ public class GameImpl extends Game{
     }
 
     private void recordGame(){
-        JsonConverterData jsonConverterData = JsonConverterData.builder()
+        JsonConverterData jsonConverterData = JsonConverter.convertToJsonConverterData();
+        jsonConverterData.getGames().add(GameData.builder()
+                .firstTeamAttacks(firstTeamStartsGame)
                 .team1(team1)
                 .team2(team2)
                 .moves(moves.toString())
-                .firstTeamAttacks(firstTeamAttacks)
-                .build();
+                .time(LocalDateTime.now()
+                        .format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm")))
+                .build());
         JsonConverter.convertToJson(jsonConverterData);
     }
 }

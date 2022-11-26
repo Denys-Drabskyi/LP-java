@@ -1,123 +1,87 @@
 {
-  "team1": {
-    "name": "team",
-    "droids": [
-      {
-        "additionalDamage": 0,
-        "hp": -51,
-        "atc": 10,
-        "defence": 12,
-        "name": "namebvghjghj",
-        "statsPoints": 0,
-        "attacks": [
-          {
-            "name": "SneakyA1",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 0
-          },
-          {
-            "name": "SneakyA2",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 2
-          },
-          {
-            "name": "no name",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 4
-          }
-        ]
-      },
-      {
-        "hp": -12,
-        "atc": 13,
-        "defence": 20,
-        "name": "name3",
-        "statsPoints": 0,
-        "attacks": [
-          {
-            "name": "TankDroidA1",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 0
-          },
-          {
-            "name": "TankDroidA2",
-            "shortDesc": "no description",
-            "coolDown": 2,
-            "baseCoolDown": 3
-          },
-          {
-            "name": "no name",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 4
-          }
-        ]
-      }
-    ]
-  },
-  "team2": {
-    "name": "team1",
-    "droids": [
-      {
-        "hp": 1,
-        "atc": 5,
-        "defence": 20,
-        "name": "name2",
-        "statsPoints": 0,
-        "attacks": [
-          {
-            "name": "TankDroidA1",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 0
-          },
-          {
-            "name": "TankDroidA2",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 3
-          },
-          {
-            "name": "no name",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 4
-          }
-        ]
-      },
-      {
-        "hp": -51,
-        "atc": 13,
-        "defence": 20,
-        "name": "name4",
-        "statsPoints": 0,
-        "attacks": [
-          {
-            "name": "TankDroidA1",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 0
-          },
-          {
-            "name": "TankDroidA2",
-            "shortDesc": "no description",
-            "coolDown": 2,
-            "baseCoolDown": 3
-          },
-          {
-            "name": "no name",
-            "shortDesc": "no description",
-            "coolDown": 0,
-            "baseCoolDown": 4
-          }
-        ]
-      }
-    ]
-  },
-  "firstTeamAttacks": false,
-  "moves": "2 1 2 2 2 2 2 2 2 1 "
+  "games": [],
+  "createdDroids": [
+    {
+      "hp": 100,
+      "atc": 110,
+      "defence": 10,
+      "name": "test1",
+      "statsPoints": 0,
+      "attacks": [
+        {
+          "name": "SneakyA1",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 0
+        },
+        {
+          "name": "SneakyA2",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 2
+        },
+        {
+          "name": "no name",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 4
+        }
+      ]
+    },
+    {
+      "hp": 100,
+      "atc": 110,
+      "defence": 10,
+      "name": "tanktest",
+      "statsPoints": 0,
+      "attacks": [
+        {
+          "name": "TankDroidA1",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 0
+        },
+        {
+          "name": "TankDroidA2",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 3
+        },
+        {
+          "name": "no name",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 4
+        }
+      ]
+    },
+    {
+      "additionalDamage": 0,
+      "hp": 100,
+      "atc": 110,
+      "defence": 10,
+      "name": "sneakyTest",
+      "statsPoints": 0,
+      "attacks": [
+        {
+          "name": "SneakyA1",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 0
+        },
+        {
+          "name": "SneakyA2",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 2
+        },
+        {
+          "name": "no name",
+          "shortDesc": "no description",
+          "coolDown": 0,
+          "baseCoolDown": 4
+        }
+      ]
+    }
+  ]
 }

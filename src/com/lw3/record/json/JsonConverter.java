@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,11 +41,10 @@ public class JsonConverter {
                 logger.error("cannot read file\n" + e.getMessage());
             }
         } else {
+            // TODO: 26.11.2022  
             convertToJson(JsonConverterData.builder()
-                    .firstTeamAttacks(false)
-                    .moves("")
-                    .team1(null)
-                    .team2(null)
+                    .games(new ArrayList<>())
+                    .createdDroids(new ArrayList<>())
                     .build());
             convertToJsonConverterData();
         }

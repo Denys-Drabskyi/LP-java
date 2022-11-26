@@ -1,6 +1,7 @@
 package com.lw3.droids;
 
 import com.lw3.attacks.Attack;
+import lombok.EqualsAndHashCode;
 
 import java.io.InputStream;
 import java.lang.reflect.Array;
@@ -9,12 +10,15 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
+@EqualsAndHashCode
 public abstract class Droid {
     private int hp = 100;
     private int atc = 10;
     private int defence = 10;
     private String name;
     private int statsPoints;
+
+    public static String description;
 
     private final ArrayList<Attack> attacks = new ArrayList<>();
 //    private final Attack a1;

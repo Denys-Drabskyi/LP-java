@@ -1,4 +1,5 @@
 package com.lw3.record.json;
+import com.lw3.droids.Droid;
 import com.lw3.game.team.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,12 +13,8 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JsonConverterData {
-    private Team team1;
-    private Team team2;
-
-    private boolean firstTeamAttacks;
-
-    private String moves;
+    private List<GameData> games = new ArrayList<>();
+    private List<Droid> createdDroids = new ArrayList<>();
 //
 //
 //    public JsonConverterData(List<PreciousStone> stones, Necklace necklace, List<StoneType> types) {

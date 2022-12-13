@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CommandProcessor {
-    Command command;
+    private Command command;
 
     public CommandProcessor(Command command) {
         this.command = command;
@@ -12,7 +12,7 @@ public class CommandProcessor {
 
     public void execute() {
         if (command != null){
-            command = command.execute();
+            this.command = command.execute();
             this.execute();
         } else
             log.info("program finished");

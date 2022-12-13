@@ -32,10 +32,10 @@ public class EditNeckless extends Command {
             System.out.println(sb);
             i = scanner().nextInt();
         }
-        if (i < data().getNecklace().getStones().size())
-            return new EditStoneInNeckless(data(), i);
         if (i == count)
             return new AddStoneToNeckless(data());
+        if (i < data().getNecklace().getStones().size())
+            return new EditStoneInNeckless(data(), i);
         else
             return new MyNecklace(data());
     }

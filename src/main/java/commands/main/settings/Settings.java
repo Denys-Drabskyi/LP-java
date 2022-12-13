@@ -12,6 +12,7 @@ public class Settings extends Command {
     @Override
     public Command execute() {
         System.out.println("поки пусто");
+        System.out.printf("Доступні типи %s", data().getTypes());
         return null;
     }
 }

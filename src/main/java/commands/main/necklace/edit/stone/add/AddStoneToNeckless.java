@@ -9,6 +9,10 @@ import java.util.List;
 
 public class AddStoneToNeckless extends Command {
 
+    public AddStoneToNeckless(JsonConverterData data) {
+        super(data);
+    }
+
     @Override
     public Command execute() {
         StringBuilder sb = new StringBuilder();
@@ -40,8 +44,6 @@ public class AddStoneToNeckless extends Command {
         return new EditNeckless(data());
     }
 
-    public AddStoneToNeckless(JsonConverterData data) {
-        super(data);
-    }
+
 
 }

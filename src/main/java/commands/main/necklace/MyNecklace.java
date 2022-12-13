@@ -17,9 +17,9 @@ public class MyNecklace extends Command {
     public Command execute() {
         System.out.flush();
         if (data().getNecklace() == null)
-            necklaceIsNull();
+            return necklaceIsNull();
         else if (data().getNecklace().getStones().size() == 0)
-            necklaceStoneBlank();
+            return necklaceStoneBlank();
         else {
             logger().info("necklace {}", data().getNecklace());
             System.out.println(data().getNecklace());
@@ -51,13 +51,13 @@ public class MyNecklace extends Command {
         return null;
     }
 
-    private void necklaceIsNull(){
+    private Command necklaceIsNull(){
         logger().info("necklace null");
         data().newNecklace();
-        necklaceStoneBlank();
+        return necklaceStoneBlank();
     }
 
-    private void necklaceStoneBlank(){
+    private Command necklaceStoneBlank(){
         logger().info("necklace.getStones().size() == 0");
         System.out.println("У намисті немає каменів");
         int i = 0;
@@ -69,8 +69,13 @@ public class MyNecklace extends Command {
             i = scanner().nextInt();
         }
         switch (i){
-            case 1 -> new EditNeckless(data()).execute();
-            case 2 -> new MainMenu(data()).execute();
+            case 1 -> {
+                return new EditNeckless(data());
+            }
+            case 2 -> {
+                return new MainMenu(data());
+            }
         }
+        return null;
     }
 }

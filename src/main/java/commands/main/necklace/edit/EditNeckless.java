@@ -34,7 +34,7 @@ public class EditNeckless extends Command {
         }
         if (i == count)
             return new AddStoneToNeckless(data());
-        if (i < data().getNecklace().getStones().size())
+        else if (i < data().getNecklace().getStones().size())
             return new EditStoneInNeckless(data(), i);
         else
             return new MyNecklace(data());

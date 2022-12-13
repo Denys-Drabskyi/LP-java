@@ -22,7 +22,28 @@
     }
   ],
   "necklace": {
-    "stones": []
+    "stones": [
+      {
+        "name": "123",
+        "pricePerCarat": 123,
+        "weight": 12,
+        "transparency": 0.0,
+        "type": {
+          "name": "123",
+          "value": 123
+        }
+      },
+      {
+        "name": "gsag",
+        "pricePerCarat": 12,
+        "weight": 12,
+        "transparency": 0.0,
+        "type": {
+          "name": "Ruby",
+          "value": 1
+        }
+      }
+    ]
   },
   "types": [
     {

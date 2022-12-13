@@ -54,7 +54,7 @@
 <!--            <AppenderRef ref="LogToFile2"/>-->
 <!--            <AppenderRef ref="LogToConsole"/>-->
 <!--        </Root>-->
-        <Root level="trace">
+        <Root level="debug">
             <AppenderRef ref="LogToFile2"/>
             <AppenderRef ref="LogToConsole"/>
         </Root>

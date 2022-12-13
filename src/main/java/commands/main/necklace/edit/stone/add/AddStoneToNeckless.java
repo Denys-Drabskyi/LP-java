@@ -37,7 +37,7 @@ public class AddStoneToNeckless extends Command {
         } while (i < 0 || i > unusedStones.size());
 
         if (i == unusedStones.size())
-            new EditNeckless(data()).execute();
+            return new EditNeckless(data());
 
         data().getNecklace().addStone(unusedStones.get(i));
         updateData();

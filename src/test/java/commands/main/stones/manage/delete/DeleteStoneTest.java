@@ -1,28 +1,21 @@
 package commands.main.stones.manage.delete;
 
+import commands.Command;
+import commands.main.stones.MyStones;
 import json.JsonConverterData;
 import necklace.Necklace;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import precious_stones.PreciousStone;
 import precious_stones.PreciousStoneBuilder;
 import precious_stones.StoneType;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class DeleteStoneTest {
-
-//    @Mock
-//    JsonConverterData jsonConverterData;
 
     @Test
     void deleteStoneTest() {
@@ -53,16 +46,11 @@ class DeleteStoneTest {
         when(deleteStone.getStone()).thenReturn(preciousStone1);
         when(deleteStone.data()).thenReturn(jsonConverterData);
 
-        deleteStone.execute();
-
-//        assertEquals(1,necklace.getStones().size());
-        assertEquals(1,stones.size());
-        assertEquals(preciousStone2, stones.get(0));
-
+        assertEquals(2,deleteStone.data().getStones().size());
+        Command command = deleteStone.execute();
+        assertEquals(command.getClass(), MyStones.class);
+        assertEquals(1,deleteStone.data().getStones().size());
     }
 
-//    @BeforeAll
-//    public void prepareData(){
-//
-//    }
+    private void doNothing(){}
 }

@@ -1,5 +1,7 @@
 package com.lw3.record.json;
 import com.lw3.droids.Droid;
+import com.lw3.droids.SneakyDroid;
+import com.lw3.droids.TankDroid;
 import com.lw3.game.team.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +16,14 @@ import java.util.*;
 @AllArgsConstructor
 public class JsonConverterData {
     private List<GameData> games = new ArrayList<>();
-    private List<Droid> createdDroids = new ArrayList<>();
+    private List<SneakyDroid> sneakyDroids = new ArrayList<>();
+    private List<TankDroid> tankDroids = new ArrayList<>();
+
+    public ArrayList<Droid> getCreatedDroids(){
+        ArrayList<Droid> droids = new ArrayList<>(sneakyDroids);
+        droids.addAll(tankDroids);
+        return droids;
+    }
 //
 //
 //    public JsonConverterData(List<PreciousStone> stones, Necklace necklace, List<StoneType> types) {

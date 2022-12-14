@@ -41,10 +41,11 @@ public class JsonConverter {
                 logger.error("cannot read file\n" + e.getMessage());
             }
         } else {
-            // TODO: 26.11.2022  
+            // TODO: 26.11.2022 if adding droid type, need to add it here, in team and in jsonconverterdata
             convertToJson(JsonConverterData.builder()
                     .games(new ArrayList<>())
-                    .createdDroids(new ArrayList<>())
+                    .sneakyDroids(new ArrayList<>())
+                    .tankDroids(new ArrayList<>())
                     .build());
             convertToJsonConverterData();
         }

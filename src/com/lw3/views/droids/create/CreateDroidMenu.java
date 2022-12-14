@@ -30,9 +30,11 @@ public class CreateDroidMenu extends Command {
                 System.out.println(TankDroid.description);
         } while (input<0 || input>2);
         if (input == 1)
-            data.getCreatedDroids().add(new SneakyDroid());
+            data.getSneakyDroids().add(new SneakyDroid());
+//            data.getCreatedDroids().add(new SneakyDroid());
         if (input == 2)
-            data.getCreatedDroids().add(new TankDroid());
+            data.getTankDroids().add(new TankDroid());
+//            data.getCreatedDroids().add(new TankDroid());
         JsonConverter.convertToJson(data);
         return new DroidsMenu();
     }

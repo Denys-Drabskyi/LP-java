@@ -1,66 +1,12 @@
 {
   "games": [],
-  "createdDroids": [
-    {
-      "hp": 100,
-      "atc": 110,
-      "defence": 10,
-      "name": "test1",
-      "statsPoints": 0,
-      "attacks": [
-        {
-          "name": "SneakyA1",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 0
-        },
-        {
-          "name": "SneakyA2",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 2
-        },
-        {
-          "name": "no name",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 4
-        }
-      ]
-    },
-    {
-      "hp": 100,
-      "atc": 110,
-      "defence": 10,
-      "name": "tanktest",
-      "statsPoints": 0,
-      "attacks": [
-        {
-          "name": "TankDroidA1",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 0
-        },
-        {
-          "name": "TankDroidA2",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 3
-        },
-        {
-          "name": "no name",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 4
-        }
-      ]
-    },
+  "sneakyDroids": [
     {
       "additionalDamage": 0,
       "hp": 100,
       "atc": 110,
       "defence": 10,
-      "name": "sneakyTest",
+      "name": "fes",
       "statsPoints": 0,
       "attacks": [
         {
@@ -83,5 +29,6 @@
         }
       ]
     }
-  ]
+  ],
+  "tankDroids": []
 }

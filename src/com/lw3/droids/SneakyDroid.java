@@ -5,17 +5,24 @@ import com.lw3.attacks.A2.SneakyA2;
 import com.lw3.attacks.A3.SneakyA3;
 import com.lw3.attacks.Attack;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class SneakyDroid extends Droid{
     int additionalDamage = 0;
 
-    public SneakyDroid() {
-        super(new SneakyA1(), new SneakyA2(), new SneakyA3());
+    public SneakyDroid(boolean newDroid) {
+        super(newDroid);
     }
 
     public SneakyDroid(String name, int hp, int atc, int def) {
-        super(new SneakyA1(), new SneakyA2(), new SneakyA3(), name, hp, atc, def);
+        super(name, hp, atc, def);
+    }
+
+    @Override
+    public ArrayList<Attack> getAttacks() {
+        return new ArrayList<>(Arrays.asList(new SneakyA1(),new SneakyA2(),new SneakyA3()));
     }
 
     public int getAdditionalDamage() {

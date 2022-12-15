@@ -5,13 +5,13 @@ import com.lw3.droids.Droid;
 import com.lw3.droids.SneakyDroid;
 import com.lw3.droids.TankDroid;
 import com.lw3.game.team.Team;
-import com.lw3.record.json.GameData;
+import com.lw3.record.json.GameDataDto;
 import com.lw3.record.json.JsonConverter;
 import com.lw3.record.json.JsonConverterData;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,15 @@ import java.util.Scanner;
 
 public class GameImpl extends Game{
     private boolean firstTeamAttacks;
-    private boolean firstTeamStartsGame;
 
     private boolean recordedGame;
 
     private StringBuilder moves = new StringBuilder();
     private int round = 1;
+
+    private GameDataDto gameDataDto;
+
+    private InputStream defaultInputStream = System.in;
 
     public GameImpl() {
         Droid droid = new SneakyDroid("namebvghjghj",1,10,12);
@@ -46,14 +49,20 @@ public class GameImpl extends Game{
     public GameImpl(Team team1, Team team2){
         this.team1 = team1;
         this.team2 = team2;
+        firstRoundRandom();
+        this.gameDataDto = GameDataDto.builder()
+                .team1(team1)
+                .team2(team2)
+                .firstTeamAttacks(firstTeamAttacks)
+                .build();
     }
 
-    public GameImpl(GameData gameData){
-        this.team1 = gameData.getTeam1();
-        this.team2 = gameData.getTeam2();
-        firstTeamAttacks = gameData.isFirstTeamAttacks();
+    public GameImpl(GameDataDto gameDataDto){
+        this.team1 = gameDataDto.getTeam1();
+        this.team2 = gameDataDto.getTeam2();
+        firstTeamAttacks = gameDataDto.isFirstTeamAttacks();
         this.recordedGame = true;
-        System.setIn(new ByteArrayInputStream(gameData.getMoves().getBytes()));
+        System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
     }
 
     @Override
@@ -61,8 +70,8 @@ public class GameImpl extends Game{
         Team attackerTeam;
         Team defendingTeam;
 
-        if (!recordedGame)
-            firstRoundRandom();
+//        if (!recordedGame)
+//            firstRoundRandom();
         if (firstTeamAttacks){
             attackerTeam = team1;
             defendingTeam = team2;
@@ -77,9 +86,11 @@ public class GameImpl extends Game{
 
     private void gameEndOrNextRound(Team attackerTeam, Team defendingTeam){
         if (defendingTeam.droids().stream().noneMatch(droid -> droid.getHp() > 0)) {
-            System.out.printf("%s перемогли", attackerTeam.name());
+            System.out.printf("\n%s перемогли", attackerTeam.name());
             if (!recordedGame)
                 recordGame();
+            else
+                System.setIn(defaultInputStream);
         }
         else
         {
@@ -240,7 +251,7 @@ public class GameImpl extends Game{
     private void firstRoundRandom(){
         if (round == 1) {
             firstTeamAttacks = new Random().nextBoolean();
-            firstTeamStartsGame = firstTeamAttacks;
+//            firstTeamStartsGame = firstTeamAttacks;
             if (firstTeamAttacks)
                 System.out.println("Team "+team1.name()+ " attacks first");
             else
@@ -250,14 +261,12 @@ public class GameImpl extends Game{
 
     private void recordGame(){
         JsonConverterData jsonConverterData = JsonConverter.convertToJsonConverterData();
-        jsonConverterData.getGames().add(GameData.builder()
-                .firstTeamAttacks(firstTeamStartsGame)
-                .team1(team1)
-                .team2(team2)
-                .moves(moves.toString())
-                .time(LocalDateTime.now()
-                        .format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm")))
-                .build());
+
+        gameDataDto.setTime(LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm")));
+        gameDataDto.setMoves(moves.toString());
+
+        jsonConverterData.getGames().add(gameDataDto);
         JsonConverter.convertToJson(jsonConverterData);
     }
 }

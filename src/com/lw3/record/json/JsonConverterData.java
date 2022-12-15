@@ -2,7 +2,6 @@ package com.lw3.record.json;
 import com.lw3.droids.Droid;
 import com.lw3.droids.SneakyDroid;
 import com.lw3.droids.TankDroid;
-import com.lw3.game.team.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JsonConverterData {
-    private List<GameData> games = new ArrayList<>();
+    private List<GameDataDto> games = new ArrayList<>();
     private List<SneakyDroid> sneakyDroids = new ArrayList<>();
     private List<TankDroid> tankDroids = new ArrayList<>();
 

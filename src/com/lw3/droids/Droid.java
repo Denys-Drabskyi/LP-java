@@ -1,6 +1,10 @@
 package com.lw3.droids;
 
+import com.lw3.attacks.A1.SneakyA1;
+import com.lw3.attacks.A2.SneakyA2;
+import com.lw3.attacks.A3.SneakyA3;
 import com.lw3.attacks.Attack;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
 import java.io.InputStream;
@@ -11,37 +15,20 @@ import java.util.Objects;
 import java.util.Scanner;
 
 @EqualsAndHashCode
+@AllArgsConstructor
 public abstract class Droid {
     private int hp = 100;
     private int atc = 10;
     private int defence = 10;
     private String name;
     private int statsPoints;
-
     public static String description;
 
-    private final ArrayList<Attack> attacks = new ArrayList<>();
-//    private final Attack a1;
-//    private final Attack a2;
-//    private final Attack a3;
-
-    public Droid(Attack a1, Attack a2, Attack a3) {
+    public Droid(boolean newDroid) {
         statsDistribution();
-//        this.a1 = a1;
-//        this.a2 = a2;
-//        this.a3 = a3;
-        this.attacks.add(a1);
-        this.attacks.add(a2);
-        this.attacks.add(a3);
     }
 
-    public Droid(Attack a1, Attack a2, Attack a3, String name, int hp, int atc, int def) {
-//        this.a1 = a1;
-//        this.a2 = a2;
-//        this.a3 = a3;
-        this.attacks.add(a1);
-        this.attacks.add(a2);
-        this.attacks.add(a3);
+    public Droid(String name, int hp, int atc, int def) {
         this.name = name;
         this.hp = hp;
         this.atc = atc;
@@ -100,9 +87,7 @@ public abstract class Droid {
         return atc;
     }
 
-    public ArrayList<Attack> getAttacks() {
-        return attacks;
-    }
+    public abstract ArrayList<Attack> getAttacks();
 
     public int getDefence() {
         return defence;
@@ -116,9 +101,6 @@ public abstract class Droid {
                 ", defence=" + defence +
                 ", name='" + name + '\'' +
                 ", statsPoints=" + statsPoints +
-                ", a1=" + attacks.get(0).getClass().getSimpleName() +
-                ", a2=" + attacks.get(1).getClass().getSimpleName() +
-                ", a3=" + attacks.get(2).getClass().getSimpleName() +
                 '}';
     }
 
@@ -154,16 +136,4 @@ public abstract class Droid {
 //        }
 //
 //    }
-
-    public Attack getA1() {
-        return attacks.get(0);
-    }
-
-    public Attack getA2() {
-        return attacks.get(1);
-    }
-
-    public Attack getA3() {
-        return attacks.get(2);
-    }
 }

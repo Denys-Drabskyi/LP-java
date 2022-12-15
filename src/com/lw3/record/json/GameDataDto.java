@@ -4,11 +4,13 @@ import com.lw3.game.team.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @AllArgsConstructor
 @Getter
-public class GameData {
+@Setter
+public class GameDataDto {
     private String time;
     private Team team1;
     private Team team2;

@@ -16,6 +16,7 @@ public class MainMenu extends Command{
                 1-> Дроїди
                 2-> Гра
                 """);
+            System.setIn(System.in);
             input = getSc().nextInt();
         } while (input<1 || input>2);
 

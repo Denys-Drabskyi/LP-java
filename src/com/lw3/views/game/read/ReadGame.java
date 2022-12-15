@@ -19,14 +19,18 @@ public class ReadGame extends Command {
         int i = 0;
         StringBuilder stringBuilder = new StringBuilder();
         while (i < data.getGames().size()) {
-            stringBuilder.append(i).append("-> ").append(data.getGames().get(i).getTime());
+            stringBuilder.append(i).append("-> ")
+                    .append(data.getGames().get(i).getTime())
+                    .append(String.format(" %s vs %s\n",
+                            data.getGames().get(i).getTeam1().name(),
+                            data.getGames().get(i).getTeam2().name()));
             i++;
         }
         stringBuilder.append(i).append("-> Назад");
         do {
             System.out.println(stringBuilder);
             input = getSc().nextInt();
-        } while (input<1 || input>i);
+        } while (input<0 || input>i);
         if (input != i)
             return new GameDeleteOrStart(input);
         return new GameMenu();

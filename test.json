@@ -1,5 +1,38 @@
 {
-  "games": [],
+  "games": [
+    {
+      "time": "16/12/22 12:01",
+      "team1": {
+        "name": "gesggseg",
+        "sneakyDroids": [
+          {
+            "additionalDamage": 0,
+            "hp": 100,
+            "atc": 110,
+            "defence": 10,
+            "name": "Sneaky",
+            "statsPoints": 0
+          }
+        ],
+        "tankDroids": []
+      },
+      "team2": {
+        "name": "fesgfs",
+        "sneakyDroids": [],
+        "tankDroids": [
+          {
+            "hp": -120,
+            "atc": 10,
+            "defence": 110,
+            "name": "Tank",
+            "statsPoints": 0
+          }
+        ]
+      },
+      "firstTeamAttacks": true,
+      "moves": "2 "
+    }
+  ],
   "sneakyDroids": [
     {
       "additionalDamage": 0,
@@ -7,28 +40,31 @@
       "atc": 110,
       "defence": 10,
       "name": "fes",
-      "statsPoints": 0,
-      "attacks": [
-        {
-          "name": "SneakyA1",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 0
-        },
-        {
-          "name": "SneakyA2",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 2
-        },
-        {
-          "name": "no name",
-          "shortDesc": "no description",
-          "coolDown": 0,
-          "baseCoolDown": 4
-        }
-      ]
+      "statsPoints": 0
+    },
+    {
+      "additionalDamage": 0,
+      "hp": 100,
+      "atc": 110,
+      "defence": 10,
+      "name": "Sneaky",
+      "statsPoints": 0
     }
   ],
-  "tankDroids": []
+  "tankDroids": [
+    {
+      "hp": 100,
+      "atc": 110,
+      "defence": 10,
+      "name": "dsacdsa",
+      "statsPoints": 0
+    },
+    {
+      "hp": 100,
+      "atc": 10,
+      "defence": 110,
+      "name": "Tank",
+      "statsPoints": 0
+    }
+  ]
 }

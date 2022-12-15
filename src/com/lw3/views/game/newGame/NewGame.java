@@ -10,6 +10,7 @@ import com.lw3.views.Command;
 import com.lw3.views.MainMenu;
 import com.lw3.views.droids.create.CreateDroidMenu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -18,11 +19,13 @@ public class NewGame extends Command {
     private Team team1;
     private Team team2;
     private JsonConverterData data;
+    private ArrayList<Droid> unPicketDroids;
 
     public NewGame() {
         this.data = JsonConverter.convertToJsonConverterData();
         this.team1 = new Team();
         this.team2 = new Team();
+        this.unPicketDroids = new ArrayList<>(data.getCreatedDroids());
     }
 
     @Override
@@ -96,7 +99,7 @@ public class NewGame extends Command {
             team2 = buffer;
         }
 
-        while (getUnPicketDroids().size() > 2){
+        while (getUnPicketDroids().size() >= 2){
             System.out.println();
             if (pickUpDroid(team1)==-1)
                 break;
@@ -105,13 +108,7 @@ public class NewGame extends Command {
     }
 
     private List<Droid> getUnPicketDroids(){
-       return data.getCreatedDroids()
-                .stream()
-                .filter(
-                        droid -> !team1.droids().contains(droid)
-                                &&
-                                !team2.droids().contains(droid))
-                .collect(Collectors.toList());
+       return unPicketDroids;
 
     }
 
@@ -133,7 +130,8 @@ public class NewGame extends Command {
             input = getSc().nextInt();
         } while (input<0 || input>i);
         if (input!=i){
-            team.droids().add(unPickedDroids.get(input));
+            team.addDroid(unPickedDroids.get(input));
+            unPicketDroids.remove(input);
         }
         if (team1.droids().size() != team2.droids().size()
                 && input == i){

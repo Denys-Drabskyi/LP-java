@@ -43,11 +43,7 @@ public class GameImpl extends Game implements ChooseDroid{
         firstTeamAttacks = gameDataDto.isFirstTeamAttacks();
         this.recordedGame = true;
         System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
-//        System.out.println(gameDataDto.getMoves());
-//        System.setIn(new ByteArrayInputStream("1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 ".getBytes()));
         this.sc = new Scanner(System.in);
-//        while (sc.hasNextInt())
-//            System.out.println(sc.nextInt());
     }
 
     @Override

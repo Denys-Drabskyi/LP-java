@@ -1,5 +1,6 @@
 package com.lw3.views.droids.create;
 
+import com.lw3.droids.HealerDroid;
 import com.lw3.droids.SneakyDroid;
 import com.lw3.droids.TankDroid;
 import com.lw3.record.json.JsonConverter;
@@ -22,19 +23,22 @@ public class CreateDroidMenu extends Command {
                     двічі напишіть номер для опису кожного типу
                     1-> Sneaky
                     2-> Tank
+                    3-> Healer
                     """);
             input = getSc().nextInt();
             if (input == 11)
                 System.out.println(SneakyDroid.description);
             if (input == 22)
                 System.out.println(TankDroid.description);
-        } while (input<0 || input>2);
+            if (input == 33)
+                System.out.println(HealerDroid.description);
+        } while (input<0 || input>3);
         if (input == 1)
             data.getSneakyDroids().add(new SneakyDroid(true));
-//            data.getCreatedDroids().add(new SneakyDroid());
         if (input == 2)
             data.getTankDroids().add(new TankDroid(true));
-//            data.getCreatedDroids().add(new TankDroid());
+        if (input == 3)
+            data.getHealerDroids().add(new HealerDroid(true));
         JsonConverter.convertToJson(data);
         return new DroidsMenu();
     }

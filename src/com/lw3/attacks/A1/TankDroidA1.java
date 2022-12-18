@@ -11,15 +11,9 @@ public class TankDroidA1 extends Attack {
         this.name = "TankDroidA1";
     }
 
-//    @Override
-//    public boolean attack(Droid self, Droid enemy) {
-//       enemy.setHp((int) (enemy.getHp() - self.getAtc()));
-//    }
-
     @Override
     public boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded, Scanner sc) {
         Droid enemy = chooseDroid(defenderTeam, false, moves, recorded, sc);
-
         enemy.setHp((int) (enemy.getHp() - self.getAtc()));
         return true;
     }

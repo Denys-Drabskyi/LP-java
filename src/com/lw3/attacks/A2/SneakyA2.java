@@ -10,20 +10,9 @@ import java.util.Scanner;
 public class SneakyA2 extends Attack {
     public SneakyA2() {
         this.baseCoolDown = 2;
-        this.name = "SneakyA2";
+        this.name = "Сильна атака";
+        this.shortDesc = "Атакує 1 противника на 200% від своєї атаки, якщо є додаткова шкода, застосовіє її";
     }
-
-//    @Override
-//    public boolean attack(Droid self, Droid enemy) {
-//        if (coolDown == 0){
-//            SneakyDroid sneakyDroid = (SneakyDroid) self;
-//            enemy.setHp((int) (enemy.getHp() - (self.getAtc()*2+sneakyDroid.getAdditionalDamage()) ));
-//            sneakyDroid.setAdditionalDamage(0);
-//            coolDown = baseCoolDown;
-//            return true;
-//        }
-//        return false;
-//    }
 
     @Override
     public boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded, Scanner sc) {
@@ -31,7 +20,7 @@ public class SneakyA2 extends Attack {
             Droid enemy = chooseDroid(defenderTeam, false, moves, recorded, sc);
 
             SneakyDroid sneakyDroid = (SneakyDroid) self;
-            enemy.setHp((int) (enemy.getHp() - (self.getAtc()*2+sneakyDroid.getAdditionalDamage()) ));
+            enemy.setHp((int) (enemy.getHp() - (self.getAtc()*2+sneakyDroid.getAdditionalDamage())));
             sneakyDroid.setAdditionalDamage(0);
             coolDown = baseCoolDown;
             return true;

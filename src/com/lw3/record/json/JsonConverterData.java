@@ -1,5 +1,6 @@
 package com.lw3.record.json;
 import com.lw3.droids.Droid;
+import com.lw3.droids.HealerDroid;
 import com.lw3.droids.SneakyDroid;
 import com.lw3.droids.TankDroid;
 import lombok.AllArgsConstructor;
@@ -17,10 +18,13 @@ public class JsonConverterData {
     private List<GameDataDto> games = new ArrayList<>();
     private List<SneakyDroid> sneakyDroids = new ArrayList<>();
     private List<TankDroid> tankDroids = new ArrayList<>();
+    private List<HealerDroid> healerDroids = new ArrayList<>();
 
+    // TODO: 18.12.2022 додати новий тип
     public ArrayList<Droid> getCreatedDroids(){
         ArrayList<Droid> droids = new ArrayList<>(sneakyDroids);
         droids.addAll(tankDroids);
+        droids.addAll(healerDroids);
         return droids;
     }
 //

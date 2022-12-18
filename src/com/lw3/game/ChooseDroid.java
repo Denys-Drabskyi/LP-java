@@ -21,7 +21,7 @@ public interface ChooseDroid {
                 if (attacker)
                     System.out.println("Виберіть дроїда для атаки");
                 else
-                    System.out.println("Виберіть дроїда якого атакувати");
+                    System.out.println("Виберіть дроїда на якого застосувати атаку");
 
                 for (int i = 0; i < team.droids().size(); i++) {
                     if (liveDroids.contains(team.droids().get(i)))

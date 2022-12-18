@@ -12,6 +12,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TankDroid extends Droid {
+    private TankDroidA1 tankDroidA1 = new TankDroidA1();
+    private TankDroidA2 tankDroidA2 = new TankDroidA2();
+    private TankDroidA3 tankDroidA3 = new TankDroidA3();
+
+    public TankDroid() {
+        this.tankDroidA1 = new TankDroidA1();
+        this.tankDroidA2 = new TankDroidA2();
+        this.tankDroidA3 = new TankDroidA3();
+    }
 
     public TankDroid(boolean newDroid) {
         super(newDroid);
@@ -23,7 +32,7 @@ public class TankDroid extends Droid {
 
     @Override
     public ArrayList<Attack> getAttacks() {
-        return new ArrayList<>(Arrays.asList(new TankDroidA1(), new TankDroidA2(), new TankDroidA3()));
+        return new ArrayList<>(Arrays.asList(this.tankDroidA1, this.tankDroidA2, this.tankDroidA3));
     }
 }
 

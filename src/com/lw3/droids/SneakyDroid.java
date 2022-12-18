@@ -12,6 +12,16 @@ import java.util.Random;
 public class SneakyDroid extends Droid{
     int additionalDamage = 0;
 
+    private SneakyA1 sneakyA1;
+    private SneakyA2 sneakyA2;
+    private SneakyA3 sneakyA3;
+
+    public SneakyDroid() {
+        this.sneakyA1 = new SneakyA1();
+        this.sneakyA2 = new SneakyA2();
+        this.sneakyA3 = new SneakyA3();
+    }
+
     public SneakyDroid(boolean newDroid) {
         super(newDroid);
     }
@@ -22,7 +32,7 @@ public class SneakyDroid extends Droid{
 
     @Override
     public ArrayList<Attack> getAttacks() {
-        return new ArrayList<>(Arrays.asList(new SneakyA1(),new SneakyA2(),new SneakyA3()));
+        return new ArrayList<>(Arrays.asList(sneakyA1,sneakyA2,sneakyA3));
     }
 
     public int getAdditionalDamage() {

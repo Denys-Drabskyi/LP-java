@@ -30,21 +30,7 @@ public class GameImpl extends Game{
 
     private InputStream defaultInputStream = System.in;
 
-    public GameImpl() {
-        Droid droid = new SneakyDroid("namebvghjghj",1,10,12);
-        Droid droid1 = new TankDroid("name2",1,5,20);
-        Droid droid2 = new TankDroid("name3",1,13,20);
-        Droid droid3 = new TankDroid("name4",1,13,20);
-        ArrayList<Droid> droids = new ArrayList<>();
-        droids.add(droid);
-        droids.add(droid2);
-        ArrayList<Droid> droids1 = new ArrayList<>();
-        droids1.add(droid1);
-        droids1.add(droid3);
-
-        this.team1 = new Team("team",droids);
-        this.team2 = new Team("team1",droids1);
-    }
+    private final Print printer = new Print();
 
     public GameImpl(Team team1, Team team2){
         this.team1 = team1;
@@ -69,9 +55,6 @@ public class GameImpl extends Game{
     public void run() {
         Team attackerTeam;
         Team defendingTeam;
-
-//        if (!recordedGame)
-//            firstRoundRandom();
         if (firstTeamAttacks){
             attackerTeam = team1;
             defendingTeam = team2;
@@ -102,16 +85,14 @@ public class GameImpl extends Game{
     }
 
     private void printRound(Team attackerTeam, Team defendingTeam){
-        roundInfo(attackerTeam,defendingTeam);
-        printDroidsInfo(attackerTeam,defendingTeam);
+        printer.roundInfo(attackerTeam,defendingTeam);
+        printer.printDroidsInfo(attackerTeam,defendingTeam);
     }
 
     private void chooseDroidsAndAttack(Team attackerTeam, Team defendingTeam){
         Droid atcDroid = chooseDroid(attackerTeam, true);
         Droid defDroid = chooseDroid(defendingTeam, false);
         attack(atcDroid, defDroid);
-        if (defendingTeam.droids().stream().noneMatch(droid -> droid.getHp() > 0))
-            System.out.printf("%s перемогли",attackerTeam.name());
     }
 
     private int chooseAttack(Droid atcDroid) {
@@ -185,69 +166,6 @@ public class GameImpl extends Game{
         }
     }
 
-    private void printDroidsInfo(Team attackerTeam, Team defendingTeam){
-        for (int i = 0; i < attackerTeam.droids().size(); i++) {
-            printPairOfDroids(attackerTeam.droids().get(i),defendingTeam.droids().get(i));
-        }
-        System.out.println("-------------------------------------------------------------");
-    }
-
-    private void printPairOfDroids(Droid attackerTeamDroid, Droid defendingTeamDroid) {
-        StringBuilder sb = new StringBuilder();
-        String s = String.format("""
-                        |                                                         \t|
-                        |\tdroid:\t%s%s\t\tdroid:\t%s%s|
-                        |\ttype :\t%s%s\t\ttype :\t%s%s|
-                        |\thp  =\t%s%s\t\thp  =\t%s%s|
-                        |\tatc =\t%s%s\t\tatc =\t%s%s|
-                        |\tdef =\t%s%s\t\tdef =\t%s%s|""",
-                attackerTeamDroid.getName(),
-                spacesPerNumber(16- attackerTeamDroid.getName().chars().count()),
-                defendingTeamDroid.getName(),
-                spacesPerNumber(16- defendingTeamDroid.getName().chars().count()),
-                attackerTeamDroid.getClass().getSimpleName(),
-                spacesPerNumber(16- attackerTeamDroid.getClass().getSimpleName().chars().count()),
-                defendingTeamDroid.getClass().getSimpleName(),
-                spacesPerNumber(16- defendingTeamDroid.getClass().getSimpleName().chars().count()),
-                attackerTeamDroid.getHp(),
-                spacesPerNumber(16-String.valueOf(attackerTeamDroid.getHp()).chars().count()),
-                defendingTeamDroid.getHp(),
-                spacesPerNumber(16-String.valueOf(defendingTeamDroid.getHp()).chars().count()),
-                attackerTeamDroid.getAtc(),
-                spacesPerNumber(16-String.valueOf(attackerTeamDroid.getAtc()).chars().count()),
-                defendingTeamDroid.getAtc(),
-                spacesPerNumber(16-String.valueOf(defendingTeamDroid.getAtc()).chars().count()),
-                attackerTeamDroid.getDefence(),
-                spacesPerNumber(16-String.valueOf(attackerTeamDroid.getDefence()).chars().count()),
-                defendingTeamDroid.getDefence(),
-                spacesPerNumber(16-String.valueOf(defendingTeamDroid.getDefence()).chars().count())
-
-                );
-        sb.append(s);
-//        sb.append("\n-------------------------------------------------------------");
-        System.out.println(sb);
-    }
-
-    private String spacesPerNumber(long spaces) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < spaces; i++) {
-            sb.append(" ");
-        }
-        return sb.toString();
-    }
-
-    private void roundInfo(Team atcTeam, Team defTeam){
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("--------------------------Round №%d---------------------------",round));
-            sb.append("\n|\t\t")
-                    .append(atcTeam.name())
-                    .append(spacesPerNumber(20 - atcTeam.name().length()))
-                    .append("->").append("\t\t ")
-                    .append(defTeam.name())
-                    .append(spacesPerNumber(20 - defTeam.name().length())).append("\t|");
-        System.out.println(sb);
-    }
-
     private void firstRoundRandom(){
         if (round == 1) {
             firstTeamAttacks = new Random().nextBoolean();
@@ -269,4 +187,75 @@ public class GameImpl extends Game{
         jsonConverterData.getGames().add(gameDataDto);
         JsonConverter.convertToJson(jsonConverterData);
     }
+
+/**print class print some information needed by game*/
+    private class Print {
+        private void roundInfo(Team atcTeam, Team defTeam){
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.format("--------------------------Round №%d---------------------------",round));
+            sb.append("\n|\t\t")
+                    .append(atcTeam.name())
+                    .append(spacesPerNumber(20 - atcTeam.name().length()))
+                    .append("->").append("\t\t ")
+                    .append(defTeam.name())
+                    .append(spacesPerNumber(20 - defTeam.name().length())).append("\t|");
+            System.out.println(sb);
+        }
+
+        private void printDroidsInfo(Team attackerTeam, Team defendingTeam){
+            for (int i = 0; i < attackerTeam.droids().size(); i++) {
+                printPairOfDroids(attackerTeam.droids().get(i),defendingTeam.droids().get(i));
+            }
+            System.out.println("-------------------------------------------------------------");
+        }
+
+        private void printPairOfDroids(Droid attackerTeamDroid, Droid defendingTeamDroid) {
+            StringBuilder sb = new StringBuilder();
+            String s = String.format("""
+                        |                                                         \t|
+                        |\tdroid:\t%s%s\t\tdroid:\t%s%s|
+                        |\ttype :\t%s%s\t\ttype :\t%s%s|
+                        |\thp  =\t%s%s\t\thp  =\t%s%s|
+                        |\tatc =\t%s%s\t\tatc =\t%s%s|
+                        |\tdef =\t%s%s\t\tdef =\t%s%s|""",
+                    attackerTeamDroid.getName(),
+                    spacesPerNumber(16- attackerTeamDroid.getName().chars().count()),
+                    defendingTeamDroid.getName(),
+                    spacesPerNumber(16- defendingTeamDroid.getName().chars().count()),
+                    attackerTeamDroid.getClass().getSimpleName(),
+                    spacesPerNumber(16- attackerTeamDroid.getClass().getSimpleName().chars().count()),
+                    defendingTeamDroid.getClass().getSimpleName(),
+                    spacesPerNumber(16- defendingTeamDroid.getClass().getSimpleName().chars().count()),
+                    attackerTeamDroid.getHp(),
+                    spacesPerNumber(16-String.valueOf(attackerTeamDroid.getHp()).chars().count()),
+                    defendingTeamDroid.getHp(),
+                    spacesPerNumber(16-String.valueOf(defendingTeamDroid.getHp()).chars().count()),
+                    attackerTeamDroid.getAtc(),
+                    spacesPerNumber(16-String.valueOf(attackerTeamDroid.getAtc()).chars().count()),
+                    defendingTeamDroid.getAtc(),
+                    spacesPerNumber(16-String.valueOf(defendingTeamDroid.getAtc()).chars().count()),
+                    attackerTeamDroid.getDefence(),
+                    spacesPerNumber(16-String.valueOf(attackerTeamDroid.getDefence()).chars().count()),
+                    defendingTeamDroid.getDefence(),
+                    spacesPerNumber(16-String.valueOf(defendingTeamDroid.getDefence()).chars().count())
+
+            );
+            sb.append(s);
+//        sb.append("\n-------------------------------------------------------------");
+            System.out.println(sb);
+        }
+
+        private String spacesPerNumber(long spaces) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < spaces; i++) {
+                sb.append(" ");
+            }
+            return sb.toString();
+        }
+    }
+
+
+
 }
+
+

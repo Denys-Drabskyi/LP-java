@@ -18,16 +18,20 @@ public abstract class Droid {
     private int atc = 10;
     private int defence = 10;
     private String name;
-
     private int statsPoints;
     public static String description;
 
-    /** contains attack creation */
-    public Droid() {
+    public Droid(Droid droid) {
+        this.name = droid.name;
+        this.atc = droid.atc;
+        this.defence = droid.defence;
+        this.hp = droid.hp;
+        this.statsPoints = droid.statsPoints;
     }
 
     public Droid(boolean newDroid) {
-        statsDistribution();
+        if (newDroid)
+            statsDistribution();
     }
 
     public Droid(String name, int hp, int atc, int def) {
@@ -41,7 +45,7 @@ public abstract class Droid {
 
         statsPoints = 10;
         Scanner s = new Scanner(System.in);
-        String stats = "";
+        String stats;
 
         System.out.println("Введіть назву робота");
         name = s.nextLine();

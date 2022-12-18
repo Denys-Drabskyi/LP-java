@@ -12,18 +12,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TankDroid extends Droid {
-    private TankDroidA1 tankDroidA1 = new TankDroidA1();
-    private TankDroidA2 tankDroidA2 = new TankDroidA2();
-    private TankDroidA3 tankDroidA3 = new TankDroidA3();
-
-    public TankDroid() {
-        this.tankDroidA1 = new TankDroidA1();
-        this.tankDroidA2 = new TankDroidA2();
-        this.tankDroidA3 = new TankDroidA3();
-    }
+    private static final TankDroidA1 tankDroidA1 = new TankDroidA1();
+    private static final TankDroidA2 tankDroidA2 = new TankDroidA2();
+    private static final TankDroidA3 tankDroidA3 = new TankDroidA3();
 
     public TankDroid(boolean newDroid) {
         super(newDroid);
+    }
+
+    public TankDroid(Droid droid) {
+        super(droid);
+        TankDroid droid1 = (TankDroid) droid;
+//        this.tankDroidA1 = droid1.tankDroidA1;
+//        this.tankDroidA2 = tankDroidA2;
+//        this.tankDroidA3 = tankDroidA3;
     }
 
     public TankDroid(String name, int hp, int atc, int def) {

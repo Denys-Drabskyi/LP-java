@@ -14,8 +14,6 @@ public class GameDataDto {
     private String time;
     private Team team1;
     private Team team2;
-
     private boolean firstTeamAttacks;
-
     private String moves;
 }

@@ -2,43 +2,35 @@ package com.lw3.game;
 
 import com.lw3.attacks.Attack;
 import com.lw3.droids.Droid;
-import com.lw3.droids.SneakyDroid;
-import com.lw3.droids.TankDroid;
 import com.lw3.game.team.Team;
 import com.lw3.record.json.GameDataDto;
 import com.lw3.record.json.JsonConverter;
 import com.lw3.record.json.JsonConverterData;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class GameImpl extends Game{
     private boolean firstTeamAttacks;
-
     private boolean recordedGame;
-
-    private StringBuilder moves = new StringBuilder();
+    private final StringBuilder moves = new StringBuilder();
     private int round = 1;
-
     private GameDataDto gameDataDto;
-
-    private InputStream defaultInputStream = System.in;
-
+    private final InputStream defaultInputStream = System.in;
     private final Print printer = new Print();
 
     public GameImpl(Team team1, Team team2){
         this.team1 = team1;
         this.team2 = team2;
+
         firstRoundRandom();
         this.gameDataDto = GameDataDto.builder()
-                .team1(team1)
-                .team2(team2)
+                .team1(new Team(team1))
+                .team2(new Team(team2))
                 .firstTeamAttacks(firstTeamAttacks)
                 .build();
     }
@@ -67,6 +59,11 @@ public class GameImpl extends Game{
         gameEndOrNextRound(attackerTeam,defendingTeam);
     }
 
+    private void printRound(Team attackerTeam, Team defendingTeam){
+        printer.roundInfo(attackerTeam,defendingTeam);
+        printer.printDroidsInfo(attackerTeam,defendingTeam);
+    }
+
     private void gameEndOrNextRound(Team attackerTeam, Team defendingTeam){
         if (defendingTeam.droids().stream().noneMatch(droid -> droid.getHp() > 0)) {
             System.out.printf("\n%s перемогли", attackerTeam.name());
@@ -75,18 +72,12 @@ public class GameImpl extends Game{
             else
                 System.setIn(defaultInputStream);
         }
-        else
-        {
+        else {
             firstTeamAttacks = !firstTeamAttacks;
             attackerTeamAttacksDecreaseCooldown(attackerTeam);
             round++;
             this.run();
         }
-    }
-
-    private void printRound(Team attackerTeam, Team defendingTeam){
-        printer.roundInfo(attackerTeam,defendingTeam);
-        printer.printDroidsInfo(attackerTeam,defendingTeam);
     }
 
     private void chooseDroidsAndAttack(Team attackerTeam, Team defendingTeam){
@@ -188,7 +179,7 @@ public class GameImpl extends Game{
         JsonConverter.convertToJson(jsonConverterData);
     }
 
-/**print class print some information needed by game*/
+/** print class prints some information game needs */
     private class Print {
         private void roundInfo(Team atcTeam, Team defTeam){
             StringBuilder sb = new StringBuilder();

@@ -10,11 +10,11 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GameImpl extends Game{
+public class GameImpl extends Game implements ChooseDroid{
     private boolean firstTeamAttacks;
     private boolean recordedGame;
     private final StringBuilder moves = new StringBuilder();
@@ -22,6 +22,7 @@ public class GameImpl extends Game{
     private GameDataDto gameDataDto;
     private final InputStream defaultInputStream = System.in;
     private final Print printer = new Print();
+    private final Scanner sc;
 
     public GameImpl(Team team1, Team team2){
         this.team1 = team1;
@@ -33,6 +34,7 @@ public class GameImpl extends Game{
                 .team2(new Team(team2))
                 .firstTeamAttacks(firstTeamAttacks)
                 .build();
+        this.sc = new Scanner(System.in);
     }
 
     public GameImpl(GameDataDto gameDataDto){
@@ -40,7 +42,10 @@ public class GameImpl extends Game{
         this.team2 = gameDataDto.getTeam2();
         firstTeamAttacks = gameDataDto.isFirstTeamAttacks();
         this.recordedGame = true;
-        System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
+//        System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
+        System.out.println(gameDataDto.getMoves());
+        System.setIn(new ByteArrayInputStream("1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 ".getBytes()));
+        this.sc = new Scanner(System.in);
     }
 
     @Override
@@ -55,7 +60,7 @@ public class GameImpl extends Game{
             defendingTeam = team1;
         }
         printRound(attackerTeam, defendingTeam);
-        chooseDroidsAndAttack(attackerTeam,defendingTeam);
+        move(attackerTeam,defendingTeam);
         gameEndOrNextRound(attackerTeam,defendingTeam);
     }
 
@@ -80,24 +85,28 @@ public class GameImpl extends Game{
         }
     }
 
-    private void chooseDroidsAndAttack(Team attackerTeam, Team defendingTeam){
-        Droid atcDroid = chooseDroid(attackerTeam, true);
-        Droid defDroid = chooseDroid(defendingTeam, false);
-        attack(atcDroid, defDroid);
+    private void move(Team attackerTeam, Team defendingTeam){
+        Droid atcDroid = chooseDroid(attackerTeam, true, moves, recordedGame);
+        Attack attack = atcDroid.getAttacks().get(chooseAttack(atcDroid)-1);
+        while (!attack.prepareAndAttack(atcDroid,attackerTeam,defendingTeam,moves,recordedGame)){
+            System.out.printf("Ця атака ще не відновилася, зачекайте ще %d ходів", attack.getCoolDown());
+            attack = atcDroid.getAttacks().get(chooseAttack(atcDroid)-1);
+        }
     }
 
     private int chooseAttack(Droid atcDroid) {
-        Scanner sc = new Scanner(System.in);
         StringBuilder sb = new StringBuilder("\n" +
                 "Виберіть атаку" +
                 "\nДля інформації про атаку дублюйте її номер\n");
-        int input = -1;
+        int input;
         for (int i = 0; i < 3; i++) {
             sb.append(String.format("\n| %d-> %s", i+1, atcDroid.getAttacks().get(i).getName()));
         }
         do {
             System.out.println(sb);
             input = sc.nextInt();
+            if (recordedGame)
+                System.out.println(input);
             moves.append(input).append(" ");
             if (input == 11)
                 System.out.println(atcDroid.getAttacks().get(0).getShortDesc());
@@ -110,57 +119,15 @@ public class GameImpl extends Game{
         return input;
     }
 
-    private void attack(Droid atcDroid, Droid defDroid){
-        int input = chooseAttack(atcDroid);
-        if (!atcDroid.getAttacks().get(input-1).attack(atcDroid,defDroid)){
-            System.out.println("ця атака ще не відновилася, зачекайте "+ atcDroid.getAttacks().get(input-1).getCoolDown()+" ходів");
-            attack(atcDroid,defDroid);
-        }
-    }
-
     private void attackerTeamAttacksDecreaseCooldown(Team attackerTeam) {
         attackerTeam.droids().forEach(
                 droid -> droid.getAttacks().forEach(Attack::reduceCoolDown)
         );
     }
 
-    private Droid chooseDroid(Team team, boolean attacker) {
-        Scanner sc = new Scanner(System.in);
-        if (team.droids().size() == 1)
-            return team.droids().get(0);
-        else{
-
-            int input = -1;
-
-            List<Droid> liveDroids = team.droids().stream().filter(droid -> droid.getHp()>0).toList();
-
-            do {
-                if (attacker)
-                    System.out.println("Виберіть дроїда для атаки");
-                else
-                    System.out.println("Виберіть дроїда якого атакувати");
-
-                for (int i = 0; i < team.droids().size(); i++) {
-                    if (liveDroids.contains(team.droids().get(i)))
-                        System.out.printf("%d -> %s\n",i+1, team.droids().get(i).getName());
-                    else
-                        System.out.printf("dead -> %s\n", team.droids().get(i).getName());
-                }
-                input = sc.nextInt();
-                moves.append(input).append(" ");
-            } while (input<1 || input>team.droids().size());
-            if (!liveDroids.contains(team.droids().get(input-1))){
-                System.out.println("Не можна обрати мертвого дроїда");
-                chooseDroid(team,attacker);
-            }
-            return team.droids().get(input-1);
-        }
-    }
-
     private void firstRoundRandom(){
         if (round == 1) {
             firstTeamAttacks = new Random().nextBoolean();
-//            firstTeamStartsGame = firstTeamAttacks;
             if (firstTeamAttacks)
                 System.out.println("Team "+team1.name()+ " attacks first");
             else
@@ -182,14 +149,13 @@ public class GameImpl extends Game{
 /** print class prints some information game needs */
     private class Print {
         private void roundInfo(Team atcTeam, Team defTeam){
-            StringBuilder sb = new StringBuilder();
-            sb.append(String.format("--------------------------Round №%d---------------------------",round));
-            sb.append("\n|\t\t")
-                    .append(atcTeam.name())
-                    .append(spacesPerNumber(20 - atcTeam.name().length()))
-                    .append("->").append("\t\t ")
-                    .append(defTeam.name())
-                    .append(spacesPerNumber(20 - defTeam.name().length())).append("\t|");
+            String sb = String.format("--------------------------Round №%d---------------------------", round) +
+                    "\n|\t\t" +
+                    atcTeam.name() +
+                    spacesPerNumber(20 - atcTeam.name().length()) +
+                    "->" + "\t\t " +
+                    defTeam.name() +
+                    spacesPerNumber(20 - defTeam.name().length()) + "\t|";
             System.out.println(sb);
         }
 

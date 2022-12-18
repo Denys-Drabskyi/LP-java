@@ -239,6 +239,85 @@
       },
       "firstTeamAttacks": false,
       "moves": "1 "
+    },
+    {
+      "time": "18/12/22 09:16",
+      "team1": {
+        "name": "rewq",
+        "sneakyDroids": [
+          {
+            "additionalDamage": 0,
+            "hp": 100,
+            "atc": 110,
+            "defence": 10,
+            "name": "Sneaky",
+            "statsPoints": 0
+          }
+        ],
+        "tankDroids": []
+      },
+      "team2": {
+        "name": "qwer",
+        "sneakyDroids": [],
+        "tankDroids": [
+          {
+            "hp": 100,
+            "atc": 110,
+            "defence": 10,
+            "name": "dsacdsa",
+            "statsPoints": 0
+          }
+        ]
+      },
+      "firstTeamAttacks": false,
+      "moves": "1 1 "
+    },
+    {
+      "time": "18/12/22 09:44",
+      "team1": {
+        "name": "qwe",
+        "sneakyDroids": [
+          {
+            "additionalDamage": 0,
+            "hp": 100,
+            "atc": 110,
+            "defence": 10,
+            "name": "fes",
+            "statsPoints": 0
+          }
+        ],
+        "tankDroids": [
+          {
+            "hp": 1100,
+            "atc": 10,
+            "defence": 10,
+            "name": "tankhp1",
+            "statsPoints": 0
+          }
+        ]
+      },
+      "team2": {
+        "name": "ewq",
+        "sneakyDroids": [],
+        "tankDroids": [
+          {
+            "hp": 100,
+            "atc": 110,
+            "defence": 10,
+            "name": "dsacdsa",
+            "statsPoints": 0
+          },
+          {
+            "hp": 1100,
+            "atc": 10,
+            "defence": 10,
+            "name": "tankHp2",
+            "statsPoints": 0
+          }
+        ]
+      },
+      "firstTeamAttacks": false,
+      "moves": "1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 "
     }
   ],
   "sneakyDroids": [

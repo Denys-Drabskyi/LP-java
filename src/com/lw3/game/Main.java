@@ -9,12 +9,18 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        InputStream is = new ByteArrayInputStream("dsa".getBytes());
+        InputStream is = new ByteArrayInputStream("1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 ".getBytes());
+
+        System.setIn(is);
+
+        Scanner s = new Scanner(System.in);
+        while (s.hasNextInt())
+            System.out.println(s.nextInt());
 
         InputStream def = System.in;
         System.out.println(def);
         System.setIn(is);
-        Scanner s = new Scanner(System.in);
+//        Scanner s = new Scanner(System.in);?
         System.out.println(s.next());
         System.setIn(def);
         s = new Scanner(System.in);

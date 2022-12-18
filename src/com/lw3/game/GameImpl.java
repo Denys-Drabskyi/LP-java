@@ -42,10 +42,12 @@ public class GameImpl extends Game implements ChooseDroid{
         this.team2 = gameDataDto.getTeam2();
         firstTeamAttacks = gameDataDto.isFirstTeamAttacks();
         this.recordedGame = true;
-//        System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
-        System.out.println(gameDataDto.getMoves());
-        System.setIn(new ByteArrayInputStream("1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 ".getBytes()));
+        System.setIn(new ByteArrayInputStream(gameDataDto.getMoves().getBytes()));
+//        System.out.println(gameDataDto.getMoves());
+//        System.setIn(new ByteArrayInputStream("1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 ".getBytes()));
         this.sc = new Scanner(System.in);
+//        while (sc.hasNextInt())
+//            System.out.println(sc.nextInt());
     }
 
     @Override
@@ -86,9 +88,9 @@ public class GameImpl extends Game implements ChooseDroid{
     }
 
     private void move(Team attackerTeam, Team defendingTeam){
-        Droid atcDroid = chooseDroid(attackerTeam, true, moves, recordedGame);
+        Droid atcDroid = chooseDroid(attackerTeam, true, moves, recordedGame, sc);
         Attack attack = atcDroid.getAttacks().get(chooseAttack(atcDroid)-1);
-        while (!attack.prepareAndAttack(atcDroid,attackerTeam,defendingTeam,moves,recordedGame)){
+        while (!attack.prepareAndAttack(atcDroid,attackerTeam,defendingTeam,moves,recordedGame, sc)){
             System.out.printf("Ця атака ще не відновилася, зачекайте ще %d ходів", attack.getCoolDown());
             attack = atcDroid.getAttacks().get(chooseAttack(atcDroid)-1);
         }

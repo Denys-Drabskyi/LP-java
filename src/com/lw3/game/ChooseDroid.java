@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public interface ChooseDroid {
-    default Droid chooseDroid(Team team, boolean attacker, StringBuilder moves, boolean recorded) {
-        Scanner sc = new Scanner(System.in);
+    default Droid chooseDroid(Team team, boolean attacker, StringBuilder moves, boolean recorded, Scanner sc) {
+//        Scanner sc = new Scanner(System.in);
         if (team.droids().size() == 1)
             return team.droids().get(0);
         else{
@@ -36,7 +36,7 @@ public interface ChooseDroid {
             } while (input<1 || input>team.droids().size());
             if (!liveDroids.contains(team.droids().get(input-1))){
                 System.out.println("Не можна обрати мертвого дроїда");
-                chooseDroid(team, attacker, moves, recorded);
+                chooseDroid(team, attacker, moves, recorded, sc);
             }
             return team.droids().get(input-1);
         }

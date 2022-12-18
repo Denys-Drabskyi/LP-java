@@ -17,7 +17,7 @@ public abstract class Attack implements ChooseDroid {
 
 //    public abstract boolean attack(Droid self, Droid enemy);
 
-    public abstract boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded);
+    public abstract boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded, Scanner sc);
 
     public int getCoolDown(){
         return coolDown;

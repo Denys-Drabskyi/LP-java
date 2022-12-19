@@ -15,7 +15,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "fesgfs",
@@ -29,7 +30,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": true,
       "moves": "2 "
@@ -57,7 +59,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "вцф",
@@ -80,7 +83,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": true,
       "moves": "1 1 2 2 1 3 2 2 1 2 2 3 "
@@ -100,7 +104,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "dasds",
@@ -114,7 +119,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": false,
       "moves": "22 33 3 "
@@ -133,7 +139,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "dwafda",
@@ -147,7 +154,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": false,
       "moves": "2 2 2 1 1 1 1 3 3 2 2 1 1 2 2 3 3 2 2 3 3 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 33 3 3 3 3 3 3 3 3 3 3 33 3 3 3 3 3 "
@@ -167,7 +175,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "qqqqqqqqqqqqq",
@@ -181,7 +190,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": true,
       "moves": "2 "
@@ -201,7 +211,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "eeeeeeeeeeeeeeeeee",
@@ -215,7 +226,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": true,
       "moves": "2 "
@@ -235,7 +247,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "csd",
@@ -249,7 +262,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": false,
       "moves": "1 "
@@ -269,7 +283,8 @@
           }
         ],
         "tankDroids": [],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "qwer",
@@ -283,7 +298,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": false,
       "moves": "1 1 "
@@ -311,7 +327,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "team2": {
         "name": "ewq",
@@ -332,7 +349,8 @@
             "statsPoints": 0
           }
         ],
-        "healerDroids": []
+        "healerDroids": [],
+        "debufferDroidDroids": []
       },
       "firstTeamAttacks": false,
       "moves": "1 2 2 1 2 2 1 2 2 1 2 2 2 3 2 1 2 2 1 2 2 1 2 1 "
@@ -384,6 +402,13 @@
       "defence": 10,
       "name": "tankHp2",
       "statsPoints": 0
+    },
+    {
+      "hp": 100,
+      "atc": 10,
+      "defence": 110,
+      "name": "dqw",
+      "statsPoints": 0
     }
   ],
   "healerDroids": [
@@ -392,6 +417,15 @@
       "atc": 10,
       "defence": 10,
       "name": "HealerTest",
+      "statsPoints": 0
+    }
+  ],
+  "debufferDroids": [
+    {
+      "hp": 1100,
+      "atc": 10,
+      "defence": 10,
+      "name": "debuff1",
       "statsPoints": 0
     }
   ]

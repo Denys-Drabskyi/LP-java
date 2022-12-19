@@ -1,21 +1,21 @@
 package com.lw3.game.team;
 
-import com.lw3.droids.Droid;
-import com.lw3.droids.HealerDroid;
-import com.lw3.droids.SneakyDroid;
-import com.lw3.droids.TankDroid;
+import com.lw3.droids.*;
 import lombok.Setter;
 import java.util.ArrayList;
 
 @Setter
 public class Team {
+    // TODO: 19.12.2022 Добавити тут
     private String name;
     private ArrayList<SneakyDroid> sneakyDroids = new ArrayList<>();
     private ArrayList<TankDroid> tankDroids = new ArrayList<>();
     private ArrayList<HealerDroid> healerDroids = new ArrayList<>();
+    private ArrayList<DebufferDroid> debufferDroidDroids = new ArrayList<>();
 
     public Team () {}
 
+    // TODO: 19.12.2022 добавити тут
     public Team (Team team) {
         this.name = team.name;
         this.tankDroids = new ArrayList<>();
@@ -24,6 +24,9 @@ public class Team {
         team.sneakyDroids.forEach(sneakyDroid -> sneakyDroids.add(new SneakyDroid(sneakyDroid)));
         this.healerDroids = new ArrayList<>();
         team.healerDroids.forEach(healerDroid -> healerDroids.add(new HealerDroid(healerDroid)));
+        this.debufferDroidDroids = new ArrayList<>();
+        team.debufferDroidDroids.forEach(debufferDroid -> debufferDroidDroids.add(new DebufferDroid(debufferDroid)));
+
     }
 
     public ArrayList<Droid> droids() {

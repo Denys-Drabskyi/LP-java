@@ -4,6 +4,7 @@ import com.lw3.attacks.Attack;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 @EqualsAndHashCode
 @AllArgsConstructor
 @Getter
+@Setter
 public abstract class Droid {
     private int hp = 100;
     private int atc = 10;

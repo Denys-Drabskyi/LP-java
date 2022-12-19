@@ -16,16 +16,15 @@ public class TankDroid extends Droid {
     private static final TankDroidA2 tankDroidA2 = new TankDroidA2();
     private static final TankDroidA3 tankDroidA3 = new TankDroidA3();
 
+    public static String description = "Броньований дроїд, кожна його атака додатково завдає шкоди на 50% від захисту, захист в обороні на 50% ефективніший";
+
     public TankDroid(boolean newDroid) {
         super(newDroid);
+
     }
 
     public TankDroid(Droid droid) {
         super(droid);
-        TankDroid droid1 = (TankDroid) droid;
-//        this.tankDroidA1 = droid1.tankDroidA1;
-//        this.tankDroidA2 = tankDroidA2;
-//        this.tankDroidA3 = tankDroidA3;
     }
 
     public TankDroid(String name, int hp, int atc, int def) {
@@ -34,7 +33,7 @@ public class TankDroid extends Droid {
 
     @Override
     public ArrayList<Attack> getAttacks() {
-        return new ArrayList<>(Arrays.asList(this.tankDroidA1, this.tankDroidA2, this.tankDroidA3));
+        return new ArrayList<>(Arrays.asList(tankDroidA1, tankDroidA2, tankDroidA3));
     }
 }
 

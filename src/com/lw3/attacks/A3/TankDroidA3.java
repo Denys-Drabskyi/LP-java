@@ -9,16 +9,9 @@ import java.util.Scanner;
 public class TankDroidA3 extends Attack {
     public TankDroidA3() {
         this.baseCoolDown = 4;
+        this.name = "Щитом по лобі";
+        this.shortDesc = "Наносить удар одному ворогу на 350% своєї атаки";
     }
-
-//    @Override
-//    public boolean attack(Droid self, Droid enemy) {
-//        if (coolDown == 0){
-//            enemy.setHp((int) (enemy.getHp() - self.getAtc()*3.5));
-//            return true;
-//        }
-//        return false;
-//    }
 
     @Override
     public boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded, Scanner sc) {

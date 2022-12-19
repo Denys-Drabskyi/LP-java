@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class TankDroidA1 extends Attack {
     public TankDroidA1() {
         this.name = "TankDroidA1";
+
     }
 
     @Override

@@ -6,19 +6,17 @@ import com.lw3.game.team.Team;
 
 import java.util.Scanner;
 
-public class TankDroidA2 extends Attack {
-
-    public TankDroidA2() {
+public class DebufferA2 extends Attack {
+    public DebufferA2() {
+        this.name = "Зріз дефенсу";
+        this.shortDesc = "Зменшує захист суперника на 50%";
         this.baseCoolDown = 3;
-        this.name = "TankDroidA2";
     }
 
     @Override
     public boolean prepareAndAttack(Droid self, Team attackTeam, Team defenderTeam, StringBuilder moves, boolean recorded, Scanner sc) {
         if (coolDown == 0){
-            Droid enemy = chooseDroid(defenderTeam, false, moves, recorded, sc);
-
-            enemy.setHp((int) (enemy.getHp() - self.getAtc()*4));
+            defenderTeam.droids().forEach(droid -> droid.setDefence((int) (droid.getDefence()*0.5)));
             coolDown = baseCoolDown;
             return true;
         }

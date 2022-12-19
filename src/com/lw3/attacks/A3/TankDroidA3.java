@@ -19,6 +19,7 @@ public class TankDroidA3 extends Attack {
             Droid enemy = chooseDroid(defenderTeam, false, moves, recorded, sc);
 
             enemy.setHp((int) (enemy.getHp() - self.getAtc()*3.5));
+            coolDown = baseCoolDown;
             return true;
         }
         return false;

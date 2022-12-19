@@ -119,7 +119,7 @@ public class NewGame extends Command {
         do {
             System.out.printf("\n%s команда обирає дроїда\n",team.name());
             while (i < unPickedDroids.size()) {
-                System.out.printf("%d-> %s %s%n",
+                System.out.printf("%d-> %s %s\t%n",
                         i,
                         unPickedDroids.get(i).getName(),
                         unPickedDroids.get(i).getClass().getSimpleName());

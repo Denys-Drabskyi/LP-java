@@ -29,13 +29,16 @@ public class Team {
 
     }
 
+    // TODO: 19.12.2022 Добавити тут
     public ArrayList<Droid> droids() {
         ArrayList<Droid> droids = new ArrayList<>(sneakyDroids);
         droids.addAll(tankDroids);
         droids.addAll(healerDroids);
+        droids.addAll(debufferDroidDroids);
         return droids;
     }
 
+    // TODO: 19.12.2022 Додати тут
     public void addDroid (Droid droid){
         if (droid instanceof SneakyDroid)
             sneakyDroids.add((SneakyDroid) droid);
@@ -43,6 +46,8 @@ public class Team {
             tankDroids.add((TankDroid) droid);
         else if (droid instanceof HealerDroid)
             healerDroids.add((HealerDroid) droid);
+        else if (droid instanceof DebufferDroid)
+            debufferDroidDroids.add((DebufferDroid) droid);
     }
 
     public String name() {

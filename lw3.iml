@@ -23,7 +23,11 @@
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-slf4j-impl:2.19.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.19.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.logging.log4j:log4j-core:2.19.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.19.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-jakarta-smtp:2.19.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.activation:jakarta.activation:2.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.mail:smtp:2.0.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.mail:mailapi:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.10" level="project" />
   </component>
 </module>

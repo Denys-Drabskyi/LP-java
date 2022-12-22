@@ -20,43 +20,19 @@
             </PatternLayout>
         </File>
 
-        <appender name="mailAppender" class="org.apache.log4j.net.SMTPAppender">
-            <param name="BufferSize" value="50" />
-            <param name="SMTPHost" value="smtp.mail.yahoo.com" />
-            <param name="SMTPPort" value="587" />
-            <param name="SMTPUsername" value="myemail_id@yahoo.co.in" />
-            <param name="SMTPPassword" value="mypassword" />
-            <param name="From" value="fromemail_id@yahoo.co.in" />
-            <param name="To" value="to_emailid@gmail.com" />
-            <param name="Subject" value="Testing Log4j mail notification" />
-            <layout class="org.apache.log4j.PatternLayout">
-                <param name="ConversionPattern" value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" />
-            </layout>
-            <filter class="org.apache.log4j.varia.LevelRangeFilter">
-                <param name="LevelMin" value="error" />
-                <param name="LevelMax" value="fatal" />
-            </filter>
-        </appender>
 
+        <SMTP name="Mail" subject="Error Log" to="marki.drab@gmail.com" from="loggerjavatest@gmail.com"
+              smtpUsername="loggerjavatest@gmail.com" smtpPassword="rxfsqwhxxyhtknsp"
+              smtpHost="smtp.gmail.com" smtpPort="465" bufferSize="50" smtpProtocol="smtps">
+        </SMTP>
+<!--        "org.apache.logging.log4j.core.appender.SmtpAppender"-->
     </Appenders>
     <Loggers>
-<!--        <Logger name="com.example.periodicals.test_Main" level="info" additivity="false">-->
-<!--            <AppenderRef ref="LogToFile2"/>-->
-<!--            <AppenderRef ref="LogToConsole"/>-->
-<!--        </Logger>-->
 
-<!--&lt;!&ndash;        Для виводу інформації про активні підключення trace &ndash;&gt;-->
-<!--        <Logger name="com.example.periodicals.dao.ConnectionPool" level="error" additivity="false">-->
-<!--            <AppenderRef ref="LogToConsoleConnectionsInfo"/>-->
-<!--        </Logger>-->
-
-<!--        <Root level="trace">-->
-<!--            <AppenderRef ref="LogToFile2"/>-->
-<!--            <AppenderRef ref="LogToConsole"/>-->
-<!--        </Root>-->
         <Root level="debug">
             <AppenderRef ref="LogToFile2"/>
             <AppenderRef ref="LogToConsole"/>
+            <AppenderRef ref="Mail"/>
         </Root>
     </Loggers>
 </Configuration>

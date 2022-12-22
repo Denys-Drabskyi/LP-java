@@ -1,6 +1,7 @@
 import json.JsonConverter;
 import json.JsonConverterData;
 import json.JsonConverterDataBuilder;
+import org.slf4j.LoggerFactory;
 import precious_stones.PreciousStone;
 import precious_stones.StoneType;
 
@@ -12,6 +13,7 @@ import java.util.*;
 public class Main {
 //    int test[] = {1,2};
     public static void main(String[] args) {
+        LoggerFactory.getLogger(Main.class).error("fjsak");
 //        String input = "add 5";
 //        InputStream in = new ByteArrayInputStream(input.getBytes());
 //        System.setIn(in);

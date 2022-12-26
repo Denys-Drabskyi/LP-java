@@ -1,5 +1,8 @@
 package commands.main.necklace.edit;
 
+import commands.Command;
+import commands.main.necklace.MyNecklace;
+import commands.main.necklace.edit.stone.EditStoneInNeckless;
 import commands.main.necklace.edit.stone.add.AddStoneToNeckless;
 import json.JsonConverter;
 import json.JsonConverterData;
@@ -31,33 +34,33 @@ class EditNecklessTest extends ConsoleCheck {
         PreciousStone preciousStone1 = mock(PreciousStone.class);
 
         JsonConverterData jsonConverterData1 = mock(JsonConverterData.class);
-        when(jsonConverterData1.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>(Collections.singletonList(preciousStone))));
+        when(jsonConverterData1.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>(Arrays.asList(preciousStone, preciousStone1))));
 
         JsonConverterData jsonConverterData2 = mock(JsonConverterData.class);
-        when(jsonConverterData2.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>(Arrays.asList(preciousStone, preciousStone1))));
+        when(jsonConverterData2.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>(Collections.singleton(preciousStone))));
 
         JsonConverterData jsonConverterData3 = mock(JsonConverterData.class);
-        when(jsonConverterData2.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>()));
+        when(jsonConverterData3.getNecklace()).thenReturn(new Necklace(new LinkedHashSet<>()));
 
 
         return Stream.of(
-                Arguments.arguments(jsonConverterData1, "3 -> додати камінь","3"),
-                Arguments.arguments(jsonConverterData2, "2 -> додати камінь","2"),
-                Arguments.arguments(jsonConverterData3, "1 -> додати камінь","1")
+                Arguments.arguments(jsonConverterData1, "2 -> додати камінь","2", AddStoneToNeckless.class),
+                Arguments.arguments(jsonConverterData2, "1 -> додати камінь","1", AddStoneToNeckless.class),
+                Arguments.arguments(jsonConverterData3, "0 -> додати камінь","0", AddStoneToNeckless.class),
+                Arguments.arguments(jsonConverterData1, "2 -> додати камінь","1", EditStoneInNeckless.class),
+                Arguments.arguments(jsonConverterData1, "2 -> додати камінь","3", MyNecklace.class)
                 );
     }
 
     @ParameterizedTest
     @MethodSource("source")
-    public void editNecklessMenuTest(JsonConverterData data, String contains, String input){
+    public void editNecklessMenuTest(JsonConverterData data, String contains, String input, Class<Command> expected){
         InputStream base = System.in;
         InputStream my = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
         System.setIn(my);
-//        log.info(my.toString());
-//        Scanner s = new Scanner(System.in);
-//        log.info(String.valueOf(s.nextInt()));
+
         EditNeckless editNeckless = new EditNeckless(data);
-        assertEquals(AddStoneToNeckless.class, editNeckless.execute().getClass());
+        assertEquals(expected, editNeckless.execute().getClass());
         assertTrue(console.toString().contains(contains));
         System.setIn(base);
 

@@ -11,6 +11,10 @@ public class PreciousStone {
     double transparency;
     private StoneType type;
 
+    public int getPrice(){
+        return pricePerCarat*weight;
+    }
+
 //    public PreciousStone(String name, int pricePerCarat, int weight, double transparency, StoneType type) {
 //        this.name = name;
 //        this.pricePerCarat = pricePerCarat;

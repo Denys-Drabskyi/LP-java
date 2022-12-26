@@ -38,11 +38,9 @@ public class ReplaceStoneInNeckless extends Command {
         } while (i<0 || i>unusedStones.size());
 
         if (i == unusedStones.size())
-            new EditNeckless(data()).execute();
+           return new EditNeckless(data());
 
         data().getNecklace().replaceStone(stoneIndexInNeckless, unusedStones.get(i));
-
-        updateData();
 
         return new EditNeckless(data());
     }

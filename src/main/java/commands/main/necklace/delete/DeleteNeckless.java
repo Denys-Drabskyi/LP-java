@@ -16,7 +16,7 @@ public class DeleteNeckless extends Command {
         logger().info("necklace was cleared");
         System.out.println("Намисто видалено");
 
-        this.updateData();
+//        this.updateData();
 
         return new MyNecklace(data());
 

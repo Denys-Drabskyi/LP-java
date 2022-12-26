@@ -2,6 +2,7 @@ package json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import necklace.Necklace;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +22,7 @@ public class JsonConverter {
     private static final Logger logger = LoggerFactory.getLogger(JsonConverter.class);
 
     public static void convertToJson(JsonConverterData jsonConverterData){
+//        logger.info(jsonConverterData.getStones().toString());
         try (FileWriter writer = new FileWriter(path)){
             String json = gson.toJson(jsonConverterData);
             logger.trace(json);
@@ -40,7 +44,7 @@ public class JsonConverter {
                 logger.error("cannot read file\n" + e.getMessage());
             }
         } else {
-            convertToJson(new JsonConverterData(null,null,null));
+            convertToJson(new JsonConverterData(new ArrayList<>(),new Necklace(new LinkedHashSet<>()),new ArrayList<>()));
             convertToJsonConverterData();
         }
 

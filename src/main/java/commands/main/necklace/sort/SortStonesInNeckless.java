@@ -17,7 +17,7 @@ public class SortStonesInNeckless extends Command {
                 "\n при однаковому типі за вартістю," +
                 "\n а при однаковій вартості та типу за назвою");
 
-        this.updateData();
+//        this.updateData();
 
         return new MyNecklace(data());
     }

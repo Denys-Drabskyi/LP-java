@@ -40,7 +40,7 @@ public class AddStoneToNeckless extends Command {
             return new EditNeckless(data());
 
         data().getNecklace().addStone(unusedStones.get(i));
-        updateData();
+//        updateData();
         return new EditNeckless(data());
     }
 

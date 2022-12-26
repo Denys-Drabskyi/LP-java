@@ -17,7 +17,7 @@ public class DeleteStoneFromNeckless extends Command {
         data().getNecklace().getStones().remove(stone);
         System.out.println("видалено");
         logger().info("deleted stone {} from necklace", stone.getName());
-        updateData();
+//        updateData();
         return new EditNeckless(data());
     }
 }

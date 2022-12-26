@@ -12,7 +12,8 @@ public class CommandProcessor {
 
     public void execute() {
         if (command != null){
-            this.command = command.execute();
+            command.updateData();
+            command = command.execute();
             this.execute();
         } else
             log.info("program finished");

@@ -5,6 +5,7 @@ import commands.main.necklace.delete.DeleteNeckless;
 import commands.main.necklace.edit.EditNeckless;
 import commands.main.MainMenu;
 import commands.main.necklace.sort.SortStonesInNeckless;
+import commands.main.necklace.weightAndPrice.PrintWeightAndPrice;
 import json.JsonConverterData;
 
 public class MyNecklace extends Command {
@@ -24,13 +25,14 @@ public class MyNecklace extends Command {
             logger().info("necklace {}", data().getNecklace());
             System.out.println(data().getNecklace());
             int i = 0;
-            while (i < 1 || i > 4) {
+            while (i < 1 || i > 5) {
                 System.out.println(
                         """
                                 1 -> редагувати
                                 2 -> сортувати
-                                3 -> видалити
-                                4 -> назад""");
+                                3 -> ціна та вага
+                                4 -> видалити
+                                5 -> назад""");
                 i = scanner().nextInt();
             }
             switch (i) {
@@ -41,9 +43,12 @@ public class MyNecklace extends Command {
                     return new SortStonesInNeckless(data());
                 }
                 case 3 -> {
-                    return new DeleteNeckless(data());
+                    return new PrintWeightAndPrice(data());
                 }
                 case 4 -> {
+                    return new DeleteNeckless(data());
+                }
+                case 5 -> {
                     return new MainMenu(data());
                 }
             }

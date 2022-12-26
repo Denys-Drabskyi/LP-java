@@ -13,6 +13,14 @@ public class PreciousStone {
     double transparency;
     private StoneType type;
 
+    public PreciousStone(PreciousStone preciousStone) {
+        this.name = preciousStone.getName();
+        this.pricePerCarat = preciousStone.pricePerCarat;
+        this.weight = preciousStone.weight;
+        this.transparency = preciousStone.getTransparency();
+        this.type = new StoneType(preciousStone.getType().getName(), preciousStone.getType().getValue());
+    }
+
     public int getPrice(){
         return pricePerCarat*weight;
     }

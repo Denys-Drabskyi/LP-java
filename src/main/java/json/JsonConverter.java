@@ -65,6 +65,7 @@ public class JsonConverter {
             JsonConverter.path = path;
         else {System.out.println("path is not valid");
             logger.info("path is not valid");
+            System.out.println("Неможливо назвати файл цим ім'ям");
         }
 
     }

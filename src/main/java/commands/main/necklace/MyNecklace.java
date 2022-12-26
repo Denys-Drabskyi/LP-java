@@ -16,7 +16,6 @@ public class MyNecklace extends Command {
 
     @Override
     public Command execute() {
-        System.out.flush();
         if (data().getNecklace() == null)
             return necklaceIsNull();
         else if (data().getNecklace().getStones().size() == 0)

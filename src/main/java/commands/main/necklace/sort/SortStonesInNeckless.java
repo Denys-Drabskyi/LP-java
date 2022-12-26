@@ -13,12 +13,10 @@ public class SortStonesInNeckless extends Command {
     public Command execute() {
         data().getNecklace().sortByRarityAndValue();
         System.out.println(
-                "\nКаміння в намисті відсортовано за типом," +
-                "\n при однаковому типі за вартістю," +
-                "\n а при однаковій вартості та типу за назвою");
-
-//        this.updateData();
-
+                """
+                 Каміння в намисті відсортовано за типом,
+                 при однаковому типі за вартістю,
+                 а при однаковій вартості та типу за назвою""");
         return new MyNecklace(data());
     }
 }

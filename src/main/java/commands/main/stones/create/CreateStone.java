@@ -13,7 +13,7 @@ public class CreateStone extends Command {
     private String name;
     private int pricePerCarat;
     private int weight;
-    private double transparency;
+    private double transparency = -1;
     private StoneType type;
 
     public CreateStone(JsonConverterData jsonConverterData) {
@@ -75,13 +75,7 @@ public class CreateStone extends Command {
     private void transparencyInput(){
         while (this.transparency < 0 || this.transparency > 1){
             System.out.println("Введіть відсоток прозорості де 10% = 0,1 каменю");
-            try {
-                this.transparency = scanner().nextDouble();
-            } catch (Exception e){
-                System.out.println("Для введення типу дробових чисел слід використовувати знак ',' замісь '.'");
-                this.transparency = -1;
-                transparencyInput();
-            }
+            this.transparency = scanner().nextDouble();
         }
     }
 
@@ -101,7 +95,7 @@ public class CreateStone extends Command {
                 if (index == i) {
                     StoneType stoneType = StoneType.builder().build();
                     data().getTypes().add(stoneType);
-                    JsonConverter.convertToJson(data());
+//                    JsonConverter.convertToJson(data());
                     this.type = stoneType;
                 } else
                     this.type = types.get(index);

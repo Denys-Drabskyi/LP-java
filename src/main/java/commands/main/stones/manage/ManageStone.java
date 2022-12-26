@@ -3,7 +3,7 @@ package commands.main.stones.manage;
 import commands.Command;
 import commands.main.stones.MyStones;
 import commands.main.stones.manage.delete.DeleteStone;
-import commands.main.stones.manage.replace.ReplaceStone;
+import commands.main.stones.manage.edit.EditStone;
 import json.JsonConverterData;
 import precious_stones.PreciousStone;
 
@@ -25,7 +25,7 @@ public class ManageStone extends Command {
         }
         switch (i) {
             case 1 -> {
-                return new ReplaceStone(data(), stone);
+                return new EditStone(data(), stone);
             }
             case 2 -> {
                 return new DeleteStone(data(), stone);

@@ -60,14 +60,17 @@ public class JsonConverter {
         return path;
     }
 
-    public static void setPath(String path) {
-        if (isValidName(path))
+    public static boolean setPath(String path) {
+        if (isValidName(path)) {
             JsonConverter.path = path;
-        else {System.out.println("path is not valid");
+            return true;
+        }
+        else {
+            System.out.println("path is not valid");
             logger.info("path is not valid");
             System.out.println("Неможливо назвати файл цим ім'ям");
+            return false;
         }
-
     }
 
 

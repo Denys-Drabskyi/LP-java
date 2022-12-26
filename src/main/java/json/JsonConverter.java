@@ -22,7 +22,6 @@ public class JsonConverter {
     private static final Logger logger = LoggerFactory.getLogger(JsonConverter.class);
 
     public static void convertToJson(JsonConverterData jsonConverterData){
-//        logger.info(jsonConverterData.getStones().toString());
         try (FileWriter writer = new FileWriter(path)){
             String json = gson.toJson(jsonConverterData);
             logger.trace(json);

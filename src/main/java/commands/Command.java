@@ -34,8 +34,9 @@ public abstract class Command {
         this.data = jsonConverterData;
     }
 
-    public void updateData (){
+    public boolean updateData (){
         JsonConverter.convertToJson(data);
+        return true;
     }
 
 

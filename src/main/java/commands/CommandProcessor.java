@@ -15,7 +15,9 @@ public class CommandProcessor {
             command.updateData();
             command = command.execute();
             this.execute();
-        } else
+        } else {
             log.info("program finished");
+            System.out.println("program finished");
+        }
     }
 }

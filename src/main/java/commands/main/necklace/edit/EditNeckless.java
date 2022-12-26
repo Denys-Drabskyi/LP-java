@@ -33,6 +33,7 @@ public class EditNeckless extends Command {
         while (i<0 || i > count+1){
             System.out.println(sb);
             i = scanner().nextInt();
+            logger().info(String.valueOf(i));
         }
         if (i == count)
             return new AddStoneToNeckless(data());

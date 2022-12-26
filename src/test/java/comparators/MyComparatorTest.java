@@ -18,30 +18,30 @@ class MyComparatorTest {
                         PreciousStone.builder()
                                 .name("name1")
                                 .type(new StoneType("1",1))
-                                .pricePerCarat(10),
+                                .pricePerCarat(10).build(),
                         PreciousStone.builder()
                                 .name("name2")
                                 .type(new StoneType("1",3))
-                                .pricePerCarat(17)
+                                .pricePerCarat(17).build()
                         ),
                 Arguments.arguments(
                         PreciousStone.builder()
                                 .name("name1")
                                 .type(new StoneType("1",3))
-                                .pricePerCarat(10),
+                                .pricePerCarat(10).build(),
                         PreciousStone.builder()
                                 .name("name2")
                                 .type(new StoneType("1",3))
-                                .pricePerCarat(17)),
+                                .pricePerCarat(17).build()),
                 Arguments.arguments(
                         PreciousStone.builder()
                                 .name("name1")
                                 .type(new StoneType("1",3))
-                                .pricePerCarat(10),
+                                .pricePerCarat(10).build(),
                         PreciousStone.builder()
                                 .name("name2")
                                 .type(new StoneType("1",3))
-                                .pricePerCarat(10))
+                                .pricePerCarat(10).build())
                 );
 
     }

@@ -1,6 +1,7 @@
 package necklace;
 
 import comparators.MyComparator;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import precious_stones.PreciousStone;
 

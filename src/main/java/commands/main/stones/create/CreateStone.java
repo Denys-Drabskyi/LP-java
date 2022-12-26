@@ -5,9 +5,7 @@ import commands.main.stones.MyStones;
 import json.JsonConverter;
 import json.JsonConverterData;
 import precious_stones.PreciousStone;
-import precious_stones.PreciousStoneBuilder;
 import precious_stones.StoneType;
-import precious_stones.StoneTypeBuilder;
 
 import java.util.List;
 
@@ -25,12 +23,13 @@ public class CreateStone extends Command {
     @Override
     public Command execute() {
         input();
-        PreciousStone preciousStone = new PreciousStoneBuilder()
-                .setName(name)
-                .setType(type)
-                .setWeight(weight)
-                .setPricePerCarat(pricePerCarat)
-                .setTransparency(transparency).build();
+        PreciousStone preciousStone = PreciousStone.builder()
+                .name(name)
+                .type(type)
+                .weight(weight)
+                .pricePerCarat(pricePerCarat)
+                .transparency(transparency)
+                .build();
         data().getStones().add(preciousStone);
         if (data().getStones().contains(preciousStone)){
             System.out.println("Камінь додано успішно");
@@ -100,7 +99,7 @@ public class CreateStone extends Command {
                 System.out.printf("%d -> Додати тип", i);
                 int index = scanner().nextInt();
                 if (index == i) {
-                    StoneType stoneType = new StoneTypeBuilder().build();
+                    StoneType stoneType = StoneType.builder().build();
                     data().getTypes().add(stoneType);
                     JsonConverter.convertToJson(data());
                     this.type = stoneType;

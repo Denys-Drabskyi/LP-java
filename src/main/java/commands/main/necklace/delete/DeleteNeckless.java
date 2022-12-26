@@ -15,10 +15,6 @@ public class DeleteNeckless extends Command {
         data().getNecklace().setStones(new LinkedHashSet<>());
         logger().info("necklace was cleared");
         System.out.println("Намисто видалено");
-
-//        this.updateData();
-
         return new MyNecklace(data());
-
     }
 }

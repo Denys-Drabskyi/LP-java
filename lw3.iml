@@ -29,5 +29,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.mail:smtp:2.0.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sun.mail:mailapi:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.10" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-params:5.8.2" level="project" />
   </component>
 </module>

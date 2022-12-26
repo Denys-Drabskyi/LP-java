@@ -18,7 +18,7 @@ public class PrintWeightAndPrice extends Command {
             int sum = data().getNecklace().getStones().stream().mapToInt(PreciousStone::getPrice).sum();
             System.out.printf("\nЗагальна вага каменів в намисті: %d, вартість: %d\n", weight, sum);
         } else
-            System.out.println("не можна визначити вагу та вартість пустого намиста");
+            System.out.println("Не можна визначити вагу та вартість пустого намиста");
         return new MyNecklace(data());
     }
 }

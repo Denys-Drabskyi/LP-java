@@ -14,6 +14,7 @@ public class Main {
 //    int test[] = {1,2};
     public static void main(String[] args) {
         LoggerFactory.getLogger(Main.class).error("fjsak");
+        System.out.println(Main.class.getClass());
 //        String input = "add 5";
 //        InputStream in = new ByteArrayInputStream(input.getBytes());
 //        System.setIn(in);

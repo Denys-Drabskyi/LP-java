@@ -21,7 +21,7 @@
         </File>
 
 
-        <SMTP name="Mail" subject="Error Log" to="marki.drab@gmail.com" from="loggerjavatest@gmail.com"
+        <SMTP name="Mail" subject="Error Log" to="denys.drabskyi.kn.2022@lpnu.ua" from="loggerjavatest@gmail.com"
               smtpUsername="loggerjavatest@gmail.com" smtpPassword="rxfsqwhxxyhtknsp"
               smtpHost="smtp.gmail.com" smtpPort="465" bufferSize="50" smtpProtocol="smtps">
         </SMTP>

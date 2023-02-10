@@ -48,9 +48,9 @@ public class Task {
     private void generateLine (){
         numbers = new ArrayList<>();
         if (firstNLukeNumber >= 1)
-            numbers.add(new FNumber(1,1L));
+            numbers.add(new FNumber(1,2L));
         if (firstNLukeNumber >= 2)
-            numbers.add(new FNumber(2,3L));
+            numbers.add(new FNumber(2,1L));
         for (int i = 3; i <= firstNLukeNumber; i++) {
             numbers.add(new FNumber(i, numbers.get(i-2).getValue()+ numbers.get(i-3).getValue()));
         }
